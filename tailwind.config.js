@@ -17,6 +17,14 @@ module.exports = {
                 customBottom: '0px 3px 3px -1px #a61419',
             },
             fontFamily: { mouseMemoirs: ['Mouse Memoirs'] },
+            flexGrow: {
+                0.9: 0.9,
+                0.8: 0.8,
+            },
+            textColor: {
+                primary: '#ED1D24',
+                secondary: 'white',
+            },
         },
         screens: {
             xs: '360px',

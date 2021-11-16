@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
+
+.background {
+    @apply bg-groot bg-cover bg-center bg-fixed bg-gray-600 bg-blend-multiply;
+}
 @tailwind utilities;

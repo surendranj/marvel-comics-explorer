@@ -23,6 +23,6 @@ export const getProps = async (params, path, pathId) => {
         props: {
             response,
         },
-        revalidate: 60,
+        revalidate: 86400,
     };
 };

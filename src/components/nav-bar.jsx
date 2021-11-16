@@ -11,16 +11,17 @@ const NavBar = () => {
         Series: '/series',
         Stories: '/stories',
     };
-    console.log(Object.entries(paths));
     return (
-        <nav className="bg-primary ">
-            <ul className="flex flex-row justify-between">
-                <ul className="ml-4">
+        <nav className="h-full">
+            <ul className="flex flex-row justify-between h-full">
+                <ul className="ml-4 w-20 flex">
                     <li className="flex">
-                        <Image src={marvelLogo} alt="Marvel Logo" width="100" height="50" />
+                        <a href="https://www.marvel.com/" className="flex">
+                            <Image src={marvelLogo} alt="Marvel Logo" layout="intrinsic" />
+                        </a>
                     </li>
                 </ul>
-                <ul className="mr-4 flex flex-row flex-grow justify-around items-center text-white">
+                <ul className="mr-4 flex flex-row flex-grow-0.9 justify-around items-center text-white">
                     {Object.entries(paths).map(path => (
                         <li key={path[0]}>
                             <Link href={path[1]}>{path[0]}</Link>

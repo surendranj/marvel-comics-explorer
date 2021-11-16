@@ -2,6 +2,7 @@ import fetchData from '../../src/utils/fetchData';
 import Link from 'next/link';
 
 const ComicsList = ({ response }) => {
+    console.log(response);
     const {
         data: { results: comicsList },
     } = response;
@@ -27,7 +28,7 @@ export const getStaticProps = async () => {
         props: {
             response,
         },
-        revalidate: 60,
+        revalidate: 86400,
     };
 };
 export default ComicsList;
