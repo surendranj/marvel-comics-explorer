@@ -22,7 +22,7 @@ const ComicsList = ({ response }) => {
 };
 
 export const getStaticProps = async () => {
-    const response = await fetchData('/comics', Date.now());
+    const response = await fetchData('/comics', Date.now(), 5);
     return {
         props: {
             response,

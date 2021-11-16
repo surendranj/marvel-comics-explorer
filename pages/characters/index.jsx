@@ -1,12 +1,13 @@
 import fetchData from '../../src/utils/fetchData';
 import Link from 'next/link';
+// import 'tailwindcss/tailwind.css';
 
 const CharacterList = ({ response }) => {
     const {
         data: { results: charactersList },
     } = response;
     return (
-        <main>
+        <div>
             <h1>Characters</h1>
             <ul>
                 {charactersList.map(character => (
@@ -17,7 +18,7 @@ const CharacterList = ({ response }) => {
                     </li>
                 ))}
             </ul>
-        </main>
+        </div>
     );
 };
 

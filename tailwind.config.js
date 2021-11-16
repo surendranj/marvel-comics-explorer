@@ -1,8 +1,27 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
-    purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    purge: ['./pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        backgroundColor: theme => ({
+            ...theme('colors'),
+            primary: '#ED1D24',
+            secondary: 'white',
+        }),
+        extend: {
+            backgroundImage: {
+                groot: "url('/images/groot.jpg')",
+            },
+            boxShadow: {
+                customBottom: '0px 3px 3px -1px #a61419',
+            },
+            fontFamily: { mouseMemoirs: ['Mouse Memoirs'] },
+        },
+        screens: {
+            xs: '360px',
+            ...defaultTheme.screens,
+        },
     },
     variants: {
         extend: {},
