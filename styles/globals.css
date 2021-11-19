@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 
-.background {
-    @apply bg-groot bg-cover bg-center bg-fixed bg-gray-600 bg-blend-multiply;
+.mobile-navbar {
+    @apply absolute -z-10 bg-white flex flex-col items-center left-0 text-primary top-10 w-full rounded-b-md transform transition-transform duration-300 ease-in-out;
+}
+
+.large-screen-navbar {
+    @apply md:transform-none md:transition-none md:bg-primary md:flex-grow-0.8 md:flex-row md:justify-between md:rounded-b-none md:static md:text-white md:w-auto;
 }
 @tailwind utilities;
