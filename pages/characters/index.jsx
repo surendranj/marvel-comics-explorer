@@ -1,29 +1,16 @@
 import fetchData from '../../src/utils/fetchData';
 import Link from 'next/link';
-// import 'tailwindcss/tailwind.css';
+import List from '../../src/components/list';
 
 const CharacterList = ({ response }) => {
     const {
         data: { results: charactersList },
     } = response;
-    return (
-        <div>
-            <h1>Characters</h1>
-            <ul>
-                {charactersList.map(character => (
-                    <li key={character.id}>
-                        <Link href={`/characters/${character.id}`} passHref>
-                            <h2>{character.name}</h2>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+    return <List list={charactersList} heading="Characters" />;
 };
 
 export const getStaticProps = async () => {
-    const response = await fetchData('/characters', Date.now());
+    const response = await fetchData('/characters', Date.now(), 10);
     return {
         props: {
             response,
