@@ -6,6 +6,6 @@
 }
 
 .large-screen-navbar {
-    @apply md:transform-none md:transition-none md:bg-primary md:flex-grow-0.8 md:flex-row md:justify-between md:rounded-b-none md:static md:text-white md:w-auto;
+    @apply md:z-0 md:transform-none md:transition-none md:bg-primary md:flex-grow-0.8 md:flex-row md:justify-between md:rounded-b-none md:static md:text-white md:w-auto;
 }
 @tailwind utilities;
