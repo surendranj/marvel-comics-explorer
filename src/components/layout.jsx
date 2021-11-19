@@ -6,22 +6,20 @@ const Layout = ({ children }) => {
     const router = useRouter();
     const { pathname } = router;
     return (
-        <div className="background font-mouseMemoirs text-2xl min-h-screen">
+        <div className="bg-groot bg-cover bg-center bg-fixed bg-gray-50 bg-blend-luminosity font-mouseMemoirs text-2xl min-h-screen">
             <Head>
                 <title>Marvel Explorer</title>
                 <link rel="icon" href="/images/ironman.png" />
             </Head>
-            <div className="flex flex-col min-h-screen">
-                <header className="sticky top-0 z-10 shadow-customBottom h-10 bg-primary ">
-                    <NavBar />
-                </header>
-                <main>{children}</main>
-                {pathname !== '/' && (
-                    <footer className="mt-auto  text-white text-lg">
-                        <span className="ml-4">Data provided by Marvel. &copy; 2014 Marvel</span>
-                    </footer>
-                )}
-            </div>
+            <header className="sticky w-full top-0 z-10 shadow-customBottom h-10 bg-primary ">
+                <NavBar />
+            </header>
+            <main>{children}</main>
+            {pathname !== '/' && (
+                <footer className="mt-auto  text-white text-lg">
+                    <span className="ml-4">Data provided by Marvel. &copy; 2014 Marvel</span>
+                </footer>
+            )}
         </div>
     );
 };
