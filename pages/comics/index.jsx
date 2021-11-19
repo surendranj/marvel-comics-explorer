@@ -1,7 +1,8 @@
+import React from 'react';
 import fetchData from '../../src/utils/fetchData';
-import Link from 'next/link';
 import List from '../../src/components/list';
 
+export const ComicsContext = React.createContext();
 
 const ComicsList = ({ response }) => {
     console.log(response);
@@ -9,8 +10,11 @@ const ComicsList = ({ response }) => {
     const {
         data: { results: comicsList },
     } = response;
-
-    return <List list={comicsList} heading="Comics" />;
+    return (
+        <ComicsContext.Provider value={{ path: '/comics' }}>
+            <List list={comicsList} heading="Comics" />;
+        </ComicsContext.Provider>
+    );
 };
 
 export const getStaticProps = async () => {

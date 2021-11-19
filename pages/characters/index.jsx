@@ -1,12 +1,18 @@
+import React from 'react';
 import fetchData from '../../src/utils/fetchData';
-import Link from 'next/link';
 import List from '../../src/components/list';
+
+export const CharactersContext = React.createContext();
 
 const CharacterList = ({ response }) => {
     const {
         data: { results: charactersList },
     } = response;
-    return <List list={charactersList} heading="Characters" />;
+    return (
+        <CharactersContext.Provider value={{ path: '/characters' }}>
+            <List list={charactersList} heading="Characters" />;
+        </CharactersContext.Provider>
+    );
 };
 
 export const getStaticProps = async () => {
