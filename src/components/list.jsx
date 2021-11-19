@@ -11,10 +11,10 @@ const List = ({ list, heading }) => {
     });
     return (
         <section className="text-white text-center">
-            <h1 className="sm:hidden sticky top-10 z-40 mb-8 p-2 text-primary bg-white">
+            <h1 className="md:hidden sticky top-10 z-40 mb-8 p-2 text-primary bg-white">
                 {heading}
             </h1>
-            <div>
+            <div className="grid grid-cols-4 text-xs">
                 {listWithImagesOnly.map(el => (
                     <Card key={el.id} {...el}></Card>
                 ))}
