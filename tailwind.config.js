@@ -4,11 +4,6 @@ module.exports = {
     purge: ['./pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        backgroundColor: theme => ({
-            ...theme('colors'),
-            primary: '#ED1D24',
-            secondary: 'white',
-        }),
         extend: {
             backgroundImage: {
                 groot: "url('/images/groot.jpg')",
@@ -21,18 +16,28 @@ module.exports = {
                 0.9: 0.9,
                 0.8: 0.8,
             },
-            textColor: {
+
+            colors: {
                 primary: '#ED1D24',
                 secondary: 'white',
             },
+            zIndex: {
+                '-10': '-10',
+                '-20': '-20',
+                '-30': '-30',
+            },
+            variants: {
+                borderWidth: ['last'],
+            },
         },
+
         screens: {
-            xs: '360px',
+            xs: '250px',
             ...defaultTheme.screens,
         },
     },
     variants: {
-        extend: {},
+        extend: { borderWidth: ['last'], borderColor: ['last'], cursor: ['hover'] },
     },
     plugins: [],
 };
