@@ -33,7 +33,7 @@ const NavBar = () => {
                     <Image src={marvelLogo} alt="Marvel Logo" layout="intrinsic" />
                 </a>
             </div>
-            <ul className={`mobile-navbar ${translate}  large-screen-navbar`}>
+            <ul className={`mobile-navbar ${translate} large-screen-navbar`}>
                 {Object.entries(paths).map(path => (
                     <li
                         key={path[0]}
