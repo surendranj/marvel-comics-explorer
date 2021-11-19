@@ -11,12 +11,12 @@ const Layout = ({ children }) => {
                 <title>Marvel Explorer</title>
                 <link rel="icon" href="/images/ironman.png" />
             </Head>
-            <header className="sticky w-full top-0 z-10 shadow-customBottom h-10 bg-primary ">
+            <header className="sticky w-full top-0 z-50 shadow-customBottom h-10 bg-primary ">
                 <NavBar />
             </header>
-            <main>{children}</main>
+            <main className="relative z-40">{children}</main>
             {pathname !== '/' && (
-                <footer className="mt-auto  text-white text-lg">
+                <footer className="mt-auto  text-tertiary text-lg">
                     <span className="ml-4">Data provided by Marvel. &copy; 2014 Marvel</span>
                 </footer>
             )}

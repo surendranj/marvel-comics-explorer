@@ -23,8 +23,8 @@ const Card = ({ id, title, name, thumbnail }) => {
 
     return (
         <Link href={`${path}/${id}`} passHref>
-            <article className="text-white border border-primary flex flex-col hover:cursor-pointer">
-                <header>
+            <article className="text-white flex flex-col hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md">
+                <header className="z-10 text-tertiary bg-white flex justify-center items-center h-10">
                     <h2>{title || name}</h2>
                 </header>
                 {thumbnail && (

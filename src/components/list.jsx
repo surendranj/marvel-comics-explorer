@@ -10,8 +10,10 @@ const List = ({ list, heading }) => {
         }
     });
     return (
-        <section className="text-white m-4 text-center">
-            <h1 className="mb-8">{heading}</h1>
+        <section className="text-white text-center">
+            <h1 className="sm:hidden sticky top-10 z-40 mb-8 p-2 text-primary bg-white">
+                {heading}
+            </h1>
             <div>
                 {listWithImagesOnly.map(el => (
                     <Card key={el.id} {...el}></Card>
