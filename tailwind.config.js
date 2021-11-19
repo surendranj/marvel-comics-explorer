@@ -20,6 +20,7 @@ module.exports = {
             colors: {
                 primary: '#ED1D24',
                 secondary: 'white',
+                tertiary: '#47090B',
             },
             zIndex: {
                 '-10': '-10',

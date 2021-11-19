@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import marvelLogo from '../../public/images/Marvel_Logo.svg';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const NavBar = () => {
+    const router = useRouter();
+    const { pathname } = router;
     const paths = {
         Home: '/',
         Comics: '/comics',
@@ -38,7 +41,9 @@ const NavBar = () => {
                     <li
                         key={path[0]}
                         onClick={handleClick}
-                        className="border-b border-primary last:border-0 md:border-0"
+                        className={`border-b border-primary last:border-0 md:border-0  ${
+                            pathname === path[1] && 'text-tertiary'
+                        }`}
                     >
                         <Link href={path[1]}>{path[0]}</Link>
                     </li>
