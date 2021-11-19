@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { getPaths, getProps } from '../../src/utils/getDetails';
 
 const StoryDetails = ({ response }) => {
-    console.log(response);
     const router = useRouter();
 
     if (router.isFallback) {

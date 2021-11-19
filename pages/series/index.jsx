@@ -5,8 +5,6 @@ import List from '../../src/components/list';
 export const SeriesContext = React.createContext();
 
 const SeriesList = ({ response }) => {
-    console.log(response);
-
     const {
         data: { results: seriesList },
     } = response;

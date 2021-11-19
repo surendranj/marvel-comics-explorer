@@ -5,8 +5,6 @@ import List from '../../src/components/list';
 export const EventsContext = React.createContext();
 
 const EventsList = ({ response }) => {
-    console.log(response);
-
     const {
         data: { results: eventList },
     } = response;

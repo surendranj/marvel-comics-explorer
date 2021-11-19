@@ -1,7 +1,6 @@
 import Card from './card';
 
 const List = ({ list, heading }) => {
-    console.log(list);
     const listWithImagesOnly = list.filter(el => {
         if (el.thumbnail) {
             return !el.thumbnail.path.includes('image_not_available');

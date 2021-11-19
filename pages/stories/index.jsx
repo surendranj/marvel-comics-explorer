@@ -5,8 +5,6 @@ import List from '../../src/components/list';
 export const StoriesContext = React.createContext();
 
 const StoriesList = ({ response }) => {
-    console.log(response);
-
     const {
         data: { results: storiesList },
     } = response;
