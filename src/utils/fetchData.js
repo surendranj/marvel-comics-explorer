@@ -7,7 +7,7 @@ const apiConfig = {
     BASE_URL: 'http://gateway.marvel.com/v1/public',
 };
 
-const fetchData = async (endPoint, timeStamp, limit = 2) => {
+const fetchData = async (endPoint, timeStamp, limit = 10) => {
     const { apikey, PRIVATE_KEY, BASE_URL } = apiConfig;
     const ts = timeStamp.toString();
     const hash = md5(ts + PRIVATE_KEY + apikey);
