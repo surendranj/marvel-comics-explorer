@@ -10,7 +10,7 @@ const CharacterList = ({ response }) => {
     } = response;
     return (
         <CharactersContext.Provider value={{ path: '/characters' }}>
-            <List list={charactersList} heading="Characters" />;
+            <List list={charactersList} heading="Characters" />
         </CharactersContext.Provider>
     );
 };

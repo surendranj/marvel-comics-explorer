@@ -13,7 +13,7 @@ const SeriesList = ({ response }) => {
 
     return (
         <SeriesContext.Provider value={{ path: '/series' }}>
-            <List list={seriesList} heading="Series" />;
+            <List list={seriesList} heading="Series" />
         </SeriesContext.Provider>
     );
 };

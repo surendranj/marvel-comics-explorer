@@ -12,7 +12,7 @@ const ComicsList = ({ response }) => {
     } = response;
     return (
         <ComicsContext.Provider value={{ path: '/comics' }}>
-            <List list={comicsList} heading="Comics" />;
+            <List list={comicsList} heading="Comics" />
         </ComicsContext.Provider>
     );
 };

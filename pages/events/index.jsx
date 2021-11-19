@@ -13,7 +13,7 @@ const EventsList = ({ response }) => {
 
     return (
         <EventsContext.Provider value={{ path: '/events' }}>
-            <List list={eventList} heading="Events" />;
+            <List list={eventList} heading="Events" />
         </EventsContext.Provider>
     );
 };
