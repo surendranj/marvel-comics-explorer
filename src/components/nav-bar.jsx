@@ -16,15 +16,15 @@ const NavBar = () => {
         Stories: '/stories',
     };
     const [navBarDropDown, setnavBarDropDown] = useState(false);
-    const [translate, setTranslate] = useState('-translate-y-full');
+    const [translate, setTranslate] = useState('-top-40');
     const handleClick = () => {
         setnavBarDropDown(!navBarDropDown);
     };
     useEffect(() => {
         if (navBarDropDown) {
-            setTranslate('-translate-y-0');
+            setTranslate('top-full');
         } else if (!navBarDropDown) {
-            setTranslate('-translate-y-full');
+            setTranslate('-top-40');
         }
     }, [navBarDropDown]);
 

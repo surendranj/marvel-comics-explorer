@@ -2,7 +2,7 @@
 @tailwind components;
 
 .mobile-navbar {
-    @apply absolute -z-10 bg-white flex flex-col items-center left-0 text-primary top-10 w-full rounded-b-md transform transition-transform duration-300 ease-in-out;
+    @apply absolute -z-10 bg-white flex flex-col items-center left-0 text-primary w-full rounded-b-md transform transition-top duration-1000 ease-in-out;
 }
 
 .large-screen-navbar {
