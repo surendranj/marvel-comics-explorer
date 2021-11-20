@@ -1,20 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
-import { ComicsContext } from '../../pages/comics';
-import { CharactersContext } from '../../pages/characters';
-import { EventsContext } from '../../pages/events';
-import { SeriesContext } from '../../pages/series';
-import { StoriesContext } from '../../pages/stories';
+import { useRouter } from 'next/router';
 
 const Card = ({ id, title, name, thumbnail }) => {
-    const comics = useContext(ComicsContext);
-    const characters = useContext(CharactersContext);
-    const events = useContext(EventsContext);
-    const series = useContext(SeriesContext);
-    const stories = useContext(StoriesContext);
-
-    const { path } = comics || characters || events || series || stories;
+    const router = useRouter();
 
     let imagePath, imageExtension;
     if (thumbnail) {
@@ -22,7 +11,7 @@ const Card = ({ id, title, name, thumbnail }) => {
     }
 
     return (
-        <Link href={`${path}/${id}`} passHref>
+        <Link href={`${router.pathname}/${id}`} passHref>
             <article className="text-white hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md flex flex-col">
                 <header className="z-10 text-tertiary bg-white p-0.5 flex-grow flex items-center justify-center">
                     <h2>{title || name}</h2>

@@ -1,18 +1,11 @@
-import React from 'react';
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-
-export const ComicsContext = React.createContext();
 
 const ComicsList = ({ response }) => {
     const {
         data: { results: comicsList },
     } = response;
-    return (
-        <ComicsContext.Provider value={{ path: '/comics' }}>
-            <List list={comicsList} heading="Comics" />
-        </ComicsContext.Provider>
-    );
+    return <List list={comicsList} heading="Comics" />;
 };
 
 export const getStaticProps = async () => {

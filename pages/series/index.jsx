@@ -1,19 +1,12 @@
-import React from 'react';
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-
-export const SeriesContext = React.createContext();
 
 const SeriesList = ({ response }) => {
     const {
         data: { results: seriesList },
     } = response;
 
-    return (
-        <SeriesContext.Provider value={{ path: '/series' }}>
-            <List list={seriesList} heading="Series" />
-        </SeriesContext.Provider>
-    );
+    return <List list={seriesList} heading="Series" />;
 };
 
 export const getStaticProps = async () => {

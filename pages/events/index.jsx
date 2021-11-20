@@ -1,19 +1,12 @@
-import React from 'react';
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-
-export const EventsContext = React.createContext();
 
 const EventsList = ({ response }) => {
     const {
         data: { results: eventList },
     } = response;
 
-    return (
-        <EventsContext.Provider value={{ path: '/events' }}>
-            <List list={eventList} heading="Events" />
-        </EventsContext.Provider>
-    );
+    return <List list={eventList} heading="Events" />;
 };
 
 export const getStaticProps = async () => {

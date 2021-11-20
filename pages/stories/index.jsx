@@ -1,18 +1,11 @@
-import React from 'react';
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-
-export const StoriesContext = React.createContext();
 
 const StoriesList = ({ response }) => {
     const {
         data: { results: storiesList },
     } = response;
-    return (
-        <StoriesContext.Provider value={{ path: '/stories' }}>
-            <List list={storiesList} heading="Stories" />
-        </StoriesContext.Provider>
-    );
+    return <List list={storiesList} heading="Stories" />;
 };
 
 export const getStaticProps = async () => {
