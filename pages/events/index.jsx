@@ -1,12 +1,13 @@
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
+import { listWithImagesOnly } from '../../src/utils/filterImages';
 
 const EventsList = ({ response }) => {
     const {
-        data: { results: eventList },
+        data: { results },
     } = response;
-
-    return <List list={eventList} heading="Events" />;
+    const eventsList = listWithImagesOnly(results);
+    return <List list={eventsList} heading="Events" />;
 };
 
 export const getStaticProps = async () => {

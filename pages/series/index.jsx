@@ -1,11 +1,12 @@
 import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
+import { listWithImagesOnly } from '../../src/utils/filterImages';
 
 const SeriesList = ({ response }) => {
     const {
-        data: { results: seriesList },
+        data: { results },
     } = response;
-
+    const seriesList = listWithImagesOnly(results);
     return <List list={seriesList} heading="Series" />;
 };
 
