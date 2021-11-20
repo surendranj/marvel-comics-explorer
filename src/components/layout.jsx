@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
             </header>
             <main className="relative z-40">{children}</main>
             {pathname !== '/' && (
-                <footer className="mt-auto ml-0.5 text-tertiary text-lg">
+                <footer className="mt-auto md:mx-1 text-tertiary text-lg">
                     <span>Data provided by Marvel. &copy; 2014 Marvel</span>
                 </footer>
             )}
