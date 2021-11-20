@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     const router = useRouter();
     const { pathname } = router;
     return (
-        <div className="bg-groot bg-cover bg-center bg-fixed bg-gray-50 bg-blend-luminosity font-mouseMemoirs text-2xl min-h-screen flex flex-col">
+        <div className="bg-groot bg-cover bg-right-top bg-fixed bg-gray-50 bg-blend-luminosity font-mouseMemoirs text-2xl min-h-screen flex flex-col">
             <Head>
                 <title>Marvel Explorer</title>
                 <link rel="icon" href="/images/ironman.png" />
