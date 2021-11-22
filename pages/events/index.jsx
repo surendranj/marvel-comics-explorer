@@ -1,22 +1,14 @@
-import fetchData from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-import { listWithImagesOnly } from '../../src/utils/filterImages';
+import { getProps } from '../../src/utils/fetchData';
 
-const EventsList = ({ response }) => {
-    const {
-        data: { results },
-    } = response;
-    const eventsList = listWithImagesOnly(results);
+const EventsList = ({ data: eventsList }) => {
     return <List list={eventsList} heading="Events" />;
 };
-const fetchParams = { limit: 10 };
-export const getStaticProps = async () => {
-    const response = await fetchData('/events', fetchParams);
-    return {
-        props: {
-            response,
-        },
-        revalidate: 86400,
-    };
+
+const destructureFn = ({ id, title, thumbnail }) => {
+    return { id, title, thumbnail };
+};
+export const getStaticProps = () => {
+    return getProps('/events', destructureFn);
 };
 export default EventsList;

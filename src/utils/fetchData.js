@@ -1,5 +1,6 @@
 import axios from 'axios';
 import md5 from 'md5';
+import { filterImages } from './filterImages';
 
 const apiConfig = {
     apikey: '85b07364de674fb20e0b03fa7fb5d2b8',
@@ -9,7 +10,6 @@ const apiConfig = {
 const fetchData = async (endPoint, fetchParams) => {
     const { apikey, PRIVATE_KEY, BASE_URL } = apiConfig;
     const ts = Date.now().toString();
-    console.log(ts);
     const hash = md5(ts + PRIVATE_KEY + apikey);
     const params = {
         ts,
@@ -24,6 +24,31 @@ const fetchData = async (endPoint, fetchParams) => {
     } catch (e) {
         console.log('Error Msg: ', e);
     }
+};
+
+export const getPaths = async (path, pathId) => {
+    const response = await fetchData(path, Date.now());
+    const {
+        data: { results },
+    } = response;
+    const paths = results.map(el => {
+        return { params: { [pathId]: el.id.toString() } };
+    });
+    return { paths, fallback: false };
+};
+
+export const getProps = async (endPoint, destructureFn, fetchParams = null) => {
+    const response = await fetchData(endPoint, fetchParams);
+    const dataWithImages = filterImages(response.data.results);
+
+    // The expression below destructures only the required properites for rendering from the dataWithImages array, reducing the size of the array, without which next.js throws a performance warning.
+    const filteredData = dataWithImages.map(data => destructureFn(data));
+
+    return {
+        props: {
+            data: filteredData,
+        },
+    };
 };
 
 export default fetchData;

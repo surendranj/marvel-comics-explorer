@@ -1,22 +1,14 @@
-import fetchData from '../../src/utils/fetchData';
+import { getProps } from '../../src/utils/fetchData';
 import List from '../../src/components/list';
-import { listWithImagesOnly } from '../../src/utils/filterImages';
 
-const SeriesList = ({ response }) => {
-    const {
-        data: { results },
-    } = response;
-    const seriesList = listWithImagesOnly(results);
+const SeriesList = ({ data: seriesList }) => {
     return <List list={seriesList} heading="Series" />;
 };
 
-export const getStaticProps = async () => {
-    const response = await fetchData('/series');
-    return {
-        props: {
-            response,
-        },
-        revalidate: 86400,
-    };
+const destructureFn = ({ id, title, thumbnail }) => {
+    return { id, title, thumbnail };
+};
+export const getStaticProps = () => {
+    return getProps('/series', destructureFn);
 };
 export default SeriesList;
