@@ -11,7 +11,7 @@ const StoriesList = ({ response }) => {
 };
 
 export const getStaticProps = async () => {
-    const response = await fetchData('/stories', Date.now(), 10);
+    const response = await fetchData('/stories');
     return {
         props: {
             response,

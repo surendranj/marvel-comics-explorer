@@ -6,23 +6,23 @@ const apiConfig = {
     PRIVATE_KEY: '2ff34d87dd5363a7356e13cdf9f6d63c6c2f28d6',
     BASE_URL: 'http://gateway.marvel.com/v1/public',
 };
-
-const fetchData = async (endPoint, timeStamp, limit = 10) => {
+const fetchData = async (endPoint, fetchParams) => {
     const { apikey, PRIVATE_KEY, BASE_URL } = apiConfig;
-    const ts = timeStamp.toString();
+    const ts = Date.now().toString();
+    console.log(ts);
     const hash = md5(ts + PRIVATE_KEY + apikey);
     const params = {
         ts,
         hash,
         apikey,
-        limit,
+        ...fetchParams,
     };
     try {
         const response = await axios.get(`${BASE_URL}${endPoint}`, { params });
         const results = response.data;
         return results;
     } catch (e) {
-        console.log(e);
+        console.log('Error Msg: ', e);
     }
 };
 

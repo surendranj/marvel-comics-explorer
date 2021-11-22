@@ -11,7 +11,7 @@ const CharacterList = ({ response }) => {
 };
 
 export const getStaticProps = async () => {
-    const response = await fetchData('/characters', Date.now(), 10);
+    const response = await fetchData('/characters');
     return {
         props: {
             response,

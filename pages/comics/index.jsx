@@ -10,8 +10,9 @@ const ComicsList = ({ response }) => {
     return <List list={comicsList} heading="Comics" />;
 };
 
+const fetchParams = { limit: 50, orderBy: 'title' };
 export const getStaticProps = async () => {
-    const response = await fetchData('/comics', Date.now(), 5);
+    const response = await fetchData('/comics', fetchParams);
     return {
         props: {
             response,

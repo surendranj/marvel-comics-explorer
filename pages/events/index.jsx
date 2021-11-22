@@ -9,9 +9,9 @@ const EventsList = ({ response }) => {
     const eventsList = listWithImagesOnly(results);
     return <List list={eventsList} heading="Events" />;
 };
-
+const fetchParams = { limit: 10 };
 export const getStaticProps = async () => {
-    const response = await fetchData('/events', Date.now(), 10);
+    const response = await fetchData('/events', fetchParams);
     return {
         props: {
             response,
