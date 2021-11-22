@@ -5,6 +5,8 @@ import { useRouter } from 'next/dist/client/router';
 const Layout = ({ children }) => {
     const router = useRouter();
     const { pathname } = router;
+    const today = new Date();
+    const year = today.getFullYear();
     return (
         <div className="bg-groot bg-cover bg-right-top bg-fixed bg-gray-50 bg-blend-luminosity font-mouseMemoirs text-2xl min-h-screen flex flex-col">
             <Head>
@@ -16,8 +18,10 @@ const Layout = ({ children }) => {
             </header>
             <main className="relative z-40 flex flex-grow">{children}</main>
             {pathname !== '/' && pathname !== '/404' && (
-                <footer className="mt-auto mx-0.5 md:mx-10 text-tertiary text-lg">
-                    <span>Data provided by Marvel. &copy; 2014 Marvel</span>
+                <footer className="mt-auto mx-4 text-tertiary text-lg">
+                    <a href="https://www.marvel.com/">
+                        Data provided by Marvel. &copy; {year} Marvel
+                    </a>
                 </footer>
             )}
         </div>

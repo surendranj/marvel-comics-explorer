@@ -31,11 +31,12 @@ const NavBar = () => {
     return (
         <nav className="h-full flex justify-between text-white mx-4 items-center">
             <div className="absolute bg-primary h-full left-0 w-full z-0 md:hidden"></div>
-            <div className="w-20 z-0">
-                <a href="https://www.marvel.com/" className="flex">
-                    <Image src={marvelLogo} alt="Marvel Logo" layout="intrinsic" />
-                </a>
+            <div className="px-1 tracking-tighter text-3xl bg-white text-primary rounded-sm p-0.5 h-9 flex justify-center items-center z-0">
+                <Link href="/" passHref>
+                    MARVEL EXPLORER
+                </Link>
             </div>
+
             <ul className={`mobile-navbar ${translate} large-screen-navbar`}>
                 {Object.entries(paths).map(path => (
                     <li
