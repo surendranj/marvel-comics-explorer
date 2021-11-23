@@ -5,10 +5,7 @@ const EventsList = ({ data: eventsList }) => {
     return <List list={eventsList} heading="Events" />;
 };
 
-const destructureFn = ({ id, title, thumbnail }) => {
-    return { id, title, thumbnail };
-};
 export const getStaticProps = () => {
-    return getProps('/events', destructureFn);
+    return getProps('/events');
 };
 export default EventsList;

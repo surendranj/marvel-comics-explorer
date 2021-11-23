@@ -5,10 +5,7 @@ const SeriesList = ({ data: seriesList }) => {
     return <List list={seriesList} heading="Series" />;
 };
 
-const destructureFn = ({ id, title, thumbnail }) => {
-    return { id, title, thumbnail };
-};
 export const getStaticProps = () => {
-    return getProps('/series', destructureFn);
+    return getProps('/series');
 };
 export default SeriesList;

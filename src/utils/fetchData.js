@@ -26,29 +26,43 @@ const fetchData = async (endPoint, fetchParams) => {
     }
 };
 
-export const getPaths = async (path, pathId) => {
-    const response = await fetchData(path, Date.now());
-    const {
-        data: { results },
-    } = response;
-    const paths = results.map(el => {
-        return { params: { [pathId]: el.id.toString() } };
-    });
-    return { paths, fallback: false };
-};
-
-export const getProps = async (endPoint, destructureFn, fetchParams = null) => {
+export const getProps = async (endPoint, fetchParams = null) => {
     const response = await fetchData(endPoint, fetchParams);
     const dataWithImages = filterImages(response.data.results);
 
-    // The expression below destructures only the required properites for rendering from the dataWithImages array, reducing the size of the array, without which next.js throws a performance warning.
-    const filteredData = dataWithImages.map(data => destructureFn(data));
+    //All the code below cleans the dataWithImages array before passing it to getStaticProps
 
+    // The code below destructures only the required properites for rendering from the dataWithImages array, reducing the size of the array, without which next.js throws a performance warning.
+    const destructureFn = ({ id, title, name, thumbnail }) => {
+        const destructered = { id, title, name, thumbnail };
+        return destructered;
+    };
+
+    //some of the properties may be undefined so the below code removes those properties from the object
+    const removeUndefined = obj => {
+        const newObj = obj;
+        Object.keys(newObj).map(key => newObj[key] === undefined && delete newObj[key]);
+        return newObj;
+    };
+
+    const filteredData = dataWithImages.map(data => {
+        const destructuredObj = destructureFn(data);
+        const undefRemoved = removeUndefined(destructuredObj);
+        return undefRemoved;
+    });
     return {
         props: {
             data: filteredData,
         },
     };
+};
+
+export const getPaths = async (path, pathId) => {
+    const response = await getProps(path);
+    const paths = response.props.data.map(data => {
+        return { params: { [pathId]: `${data.id}` } };
+    });
+    return { paths, fallback: false };
 };
 
 export default fetchData;

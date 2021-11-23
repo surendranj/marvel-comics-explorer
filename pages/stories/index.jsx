@@ -5,10 +5,7 @@ const StoriesList = ({ data: storiesList }) => {
     return <List list={storiesList} heading="Stories" />;
 };
 
-const destructureFn = ({ id, title }) => {
-    return { id, title };
-};
 export const getStaticProps = () => {
-    return getProps('/stories', destructureFn);
+    return getProps('/stories');
 };
 export default StoriesList;

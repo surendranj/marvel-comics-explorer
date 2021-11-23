@@ -1,29 +1,18 @@
-import { useRouter } from 'next/router';
-import { getPaths, getProps } from '../../src/utils/getDetails';
+import { getPaths, getProps } from '../../src/utils/fetchData';
+import Card from '../../src/components/card';
 
-const CharacterDetails = ({ response }) => {
-    const router = useRouter();
-    if (router.isFallback) {
-        return <h1>Loading...</h1>;
-    }
-    const {
-        data: { results },
-    } = response;
-    const { name, description } = results[0];
-    return (
-        <main>
-            <h1>{name}</h1>
-            <p>{description}</p>
-        </main>
-    );
+const CharacterDetails = ({ data }) => {
+    return <Card {...data[0]} />;
 };
 
+//create paths from /characters endpoint for pre-rendering
 export const getStaticPaths = () => {
     return getPaths('/characters', 'characterId');
 };
 
+// fetch data from /characaters/id endpoint
 export const getStaticProps = ({ params }) => {
-    return getProps(params, '/characters', 'characterId');
+    return getProps(`/characters/${params.characterId}`);
 };
 
 export default CharacterDetails;
