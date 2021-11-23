@@ -34,6 +34,9 @@ module.exports = {
             transitionProperty: {
                 top: 'top',
             },
+            maxWidth: {
+                300: '300px',
+            },
         },
 
         screens: {

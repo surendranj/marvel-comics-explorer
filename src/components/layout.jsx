@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
             <header className="sticky w-full top-0 z-50 shadow-customBottom h-10 bg-primary ">
                 <NavBar />
             </header>
-            <main className="relative z-40 flex flex-grow">{children}</main>
+            <main className="relative z-40 flex flex-grow justify-center">{children}</main>
             {pathname !== '/' && pathname !== '/404' && (
                 <footer className="mt-auto mx-4 text-tertiary text-lg">
                     <a href="https://www.marvel.com/">
