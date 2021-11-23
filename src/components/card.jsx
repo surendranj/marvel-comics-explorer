@@ -16,16 +16,18 @@ const Card = ({ id, title, name, thumbnail }) => {
                 <header className="z-10 text-tertiary bg-white p-0.5 flex-grow flex items-center justify-center">
                     <h2>{title || name}</h2>
                 </header>
-                {thumbnail && (
-                    <Image
-                        src={`${imagePath}/portrait_uncanny.${imageExtension}`}
-                        alt={title || name}
-                        width="300"
-                        height="450"
-                        placeholder="blur"
-                        blurDataURL={`${imagePath}/portrait_small.${imageExtension}`}
-                    />
-                )}
+                <div className="flex transform hover:scale-110 transition-transform duration-300 ease-in-out">
+                    {thumbnail && (
+                        <Image
+                            src={`${imagePath}/portrait_uncanny.${imageExtension}`}
+                            alt={title || name}
+                            width="300"
+                            height="450"
+                            placeholder="blur"
+                            blurDataURL={`${imagePath}/portrait_small.${imageExtension}`}
+                        />
+                    )}
+                </div>
             </article>
         </Link>
     );
