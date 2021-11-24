@@ -26,7 +26,7 @@ const fetchData = async (endPoint, fetchParams) => {
     }
 };
 
-export const getProps = async (endPoint, fetchParams = { limit: 50 }) => {
+export const getProps = async (endPoint, fetchParams = { limit: 10 }) => {
     const response = await fetchData(endPoint, fetchParams);
     if (!response) {
         return {
