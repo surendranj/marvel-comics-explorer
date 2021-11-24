@@ -26,7 +26,7 @@ const fetchData = async (endPoint, fetchParams) => {
     }
 };
 
-export const getProps = async (endPoint, fetchParams = null) => {
+export const getProps = async (endPoint, fetchParams = { limit: 50 }) => {
     const response = await fetchData(endPoint, fetchParams);
     if (!response) {
         return {
@@ -63,7 +63,8 @@ export const getProps = async (endPoint, fetchParams = null) => {
 };
 
 export const getPaths = async (path, pathId) => {
-    const response = await getProps(path);
+    const fetchParams = { limit: 5 };
+    const response = await getProps(path, fetchParams);
     const paths = response.props.data.map(data => {
         return { params: { [pathId]: `${data.id}` } };
     });
