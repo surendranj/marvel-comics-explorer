@@ -6,6 +6,8 @@ const SeriesList = ({ data: seriesList }) => {
 };
 
 export const getStaticProps = () => {
-    return getProps('/series');
+    const fetchParams = { offset: 100 };
+
+    return getProps('/series', fetchParams);
 };
 export default SeriesList;

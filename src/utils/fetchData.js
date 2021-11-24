@@ -62,7 +62,8 @@ export const getPaths = async (path, pathId) => {
     const paths = response.props.data.map(data => {
         return { params: { [pathId]: `${data.id}` } };
     });
-    return { paths, fallback: false };
+    //fallback set to true ensures pages not fetched by getStaticPaths initially are fetched when requested by user.
+    return { paths, fallback: true };
 };
 
 export default fetchData;

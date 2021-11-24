@@ -1,8 +1,8 @@
 import { getPaths, getProps } from '../../src/utils/fetchData';
-import Card from '../../src/components/card';
+import RenderDetailsPage from '../../src/components/render-details-page';
 
 const EventDetails = ({ data }) => {
-    return <Card {...data[0]} />;
+    return <RenderDetailsPage data={data} />;
 };
 
 //create paths from /events endpoint for pre-rendering

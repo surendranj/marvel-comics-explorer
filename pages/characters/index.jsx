@@ -6,6 +6,7 @@ const CharacterList = ({ data: charactersList }) => {
 };
 
 export const getStaticProps = () => {
-    return getProps('/characters');
+    const fetchParams = { offset: 500 };
+    return getProps('/characters', fetchParams);
 };
 export default CharacterList;
