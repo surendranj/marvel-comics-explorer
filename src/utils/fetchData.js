@@ -28,6 +28,11 @@ const fetchData = async (endPoint, fetchParams) => {
 
 export const getProps = async (endPoint, fetchParams = null) => {
     const response = await fetchData(endPoint, fetchParams);
+    if (!response) {
+        return {
+            notFound: true,
+        };
+    }
     const dataWithImages = filterImages(response.data.results);
 
     //All the code below cleans the dataWithImages array before passing it to getStaticProps
