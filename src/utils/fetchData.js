@@ -34,7 +34,6 @@ export const getProps = async (endPoint, fetchParams = { limit: 10 }) => {
         };
     }
     const dataWithImages = filterImages(response.data.results);
-
     //All the code below cleans the dataWithImages array before passing it to getStaticProps
 
     // The code below destructures only the required properites for rendering from the dataWithImages array, reducing the size of the array, without which next.js throws a performance warning.
@@ -43,7 +42,7 @@ export const getProps = async (endPoint, fetchParams = { limit: 10 }) => {
         return destructered;
     };
 
-    //some of the properties may be undefined so the below code removes those properties from the object
+    //some of the properties may be undefined so the below function removes those properties from the object
     const removeUndefined = obj => {
         const newObj = obj;
         Object.keys(newObj).map(key => newObj[key] === undefined && delete newObj[key]);
@@ -59,6 +58,8 @@ export const getProps = async (endPoint, fetchParams = { limit: 10 }) => {
         props: {
             data: filteredData,
         },
+        //revalidate for Incremental Static Regeneration as per Next docs, to avoid stale data. Marvel Docs suggests not to cache data for more than 24 hours, hence 86400 seconds(24 hourse) is used. Revalidation only occurs after subsequent requests within 24 hours. If no-one visits a page after 24 hours revalidation will not occur.
+        revalidate: 86400,
     };
 };
 
