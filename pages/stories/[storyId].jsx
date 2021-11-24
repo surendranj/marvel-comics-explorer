@@ -1,8 +1,8 @@
 import { getPaths, getProps } from '../../src/utils/fetchData';
-import RenderDetailsPage from '../../src/components/render-details-page';
+import Details from '../../src/components/details';
 
 const StoryDetails = ({ data }) => {
-    return <RenderDetailsPage data={data} />;
+    return <Details data={data} />;
 };
 
 //create paths from /stories endpoint for pre-rendering

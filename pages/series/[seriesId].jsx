@@ -1,8 +1,8 @@
 import { getPaths, getProps } from '../../src/utils/fetchData';
-import RenderDetailsPage from '../../src/components/render-details-page';
+import Details from '../../src/components/details';
 
 const SeriesDetails = ({ data }) => {
-    return <RenderDetailsPage data={data} />;
+    return <Details data={data} />;
 };
 
 //create paths from /series endpoint for pre-rendering
