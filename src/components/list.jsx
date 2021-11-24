@@ -1,4 +1,5 @@
 import Card from './card';
+import Footer from './footer';
 
 const List = ({ list, heading }) => {
     return (
@@ -11,6 +12,7 @@ const List = ({ list, heading }) => {
                     <Card key={el.id} {...el}></Card>
                 ))}
             </div>
+            <Footer />
         </section>
     );
 };

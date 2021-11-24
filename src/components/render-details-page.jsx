@@ -1,4 +1,5 @@
 import Card from './card';
+import Footer from './footer';
 import { useRouter } from 'next/router';
 
 const RenderDetailsPage = ({ data }) => {
@@ -8,7 +9,12 @@ const RenderDetailsPage = ({ data }) => {
     if (router.isFallback) {
         return <h1>Loading..</h1>;
     }
-    return <Card {...data[0]} />;
+    return (
+        <div>
+            <Card {...data[0]} />
+            <Footer />
+        </div>
+    );
 };
 
 export default RenderDetailsPage;
