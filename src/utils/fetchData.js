@@ -3,8 +3,8 @@ import md5 from 'md5';
 import { filterImages, destructureFn, removeUndefined } from './helpers';
 
 const apiConfig = {
-    apikey: '85b07364de674fb20e0b03fa7fb5d2b8',
-    PRIVATE_KEY: '2ff34d87dd5363a7356e13cdf9f6d63c6c2f28d6',
+    apikey: process.env.PUBLIC_KEY,
+    PRIVATE_KEY: process.env.PRIVATE_KEY,
     BASE_URL: 'http://gateway.marvel.com/v1/public',
 };
 const fetchData = async (endPoint, fetchParams) => {
