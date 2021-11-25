@@ -1,6 +1,6 @@
 import axios from 'axios';
 import md5 from 'md5';
-import { filterImages } from './filterImages';
+import { filterImages, destructureFn, removeUndefined } from './helpers';
 
 const apiConfig = {
     apikey: '85b07364de674fb20e0b03fa7fb5d2b8',
@@ -37,17 +37,7 @@ export const getProps = async (endPoint, fetchParams = { limit: 10 }) => {
     //All the code below cleans the dataWithImages array before passing it to getStaticProps
 
     // The code below destructures only the required properites for rendering from the dataWithImages array, reducing the size of the array, without which next.js throws a performance warning.
-    const destructureFn = ({ id, title, name, thumbnail }) => {
-        const destructered = { id, title, name, thumbnail };
-        return destructered;
-    };
-
-    //some of the properties may be undefined so the below function removes those properties from the object
-    const removeUndefined = obj => {
-        const newObj = obj;
-        Object.keys(newObj).map(key => newObj[key] === undefined && delete newObj[key]);
-        return newObj;
-    };
+    //some of the properties may be undefined so the removeUndefined function removes those properties from the object
 
     const filteredData = dataWithImages.map(data => {
         const destructuredObj = destructureFn(data);
