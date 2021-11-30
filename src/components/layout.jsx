@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
             <header className="sticky w-full top-0 z-50 shadow-customBottom h-10 bg-primary ">
                 <NavBar />
             </header>
-            <main className="relative z-40 flex flex-grow justify-center">{children}</main>
+            <main className="relative z-40 flex flex-grow justify-center flex-col">{children}</main>
         </div>
     );
 };

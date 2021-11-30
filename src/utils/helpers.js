@@ -1,3 +1,29 @@
+import axios from 'axios';
+import md5 from 'md5';
+
+export const fetchData = async (endPoint, fetchParams = null) => {
+    const apiConfig = {
+        apikey: process.env.NEXT_PUBLIC_PUBLIC_KEY, //your public key
+        PRIVATE_KEY: process.env.NEXT_PUBLIC_PRIVATE_KEY, //your private key
+        BASE_URL: 'http://gateway.marvel.com/v1/public',
+    };
+    const { apikey, PRIVATE_KEY, BASE_URL } = apiConfig;
+    const ts = Date.now().toString();
+    const hash = md5(ts + PRIVATE_KEY + apikey);
+    const params = {
+        ts,
+        hash,
+        apikey,
+        ...fetchParams,
+    };
+    const response = await axios.get(BASE_URL + endPoint, { params });
+    const data = response.data;
+    return data;
+};
+export const fetchComics = async ({ pageParam = 0 }) => {
+    const data = await fetchData('/comics', { offset: pageParam, orderBy: 'title' });
+    return data;
+};
 export const filterImages = list =>
     list.filter(el => {
         if (el.thumbnail) {
@@ -6,6 +32,22 @@ export const filterImages = list =>
             return el;
         }
     });
+export const removeDuplicates = pages => {
+    const uniquePages = pages.reduce((prevPages, lastPage) => {
+        if (prevPages.length === 0) {
+            prevPages.push(lastPage);
+        } else {
+            const uniqueLastPage = lastPage.filter(lastPageItem => {
+                if (prevPages.flat().some(prevPagesItem => prevPagesItem.id === lastPageItem.id))
+                    return false;
+                return true;
+            });
+            prevPages.push(uniqueLastPage);
+        }
+        return prevPages;
+    }, []);
+    return uniquePages;
+};
 
 export const destructureFn = ({ id, title, name, thumbnail }) => {
     const destructered = { id, title, name, thumbnail };
