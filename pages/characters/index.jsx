@@ -1,12 +1,13 @@
-import { getProps } from '../../src/utils/fetchData';
-import List from '../../src/components/list';
+import { fetchData, fetchCharacters } from '../../src/utils/helpers';
+import MarvelList from '../../src/components/marvel-list';
 
-const CharacterList = ({ data: charactersList }) => {
-    return <List list={charactersList} heading="Characters" />;
+const Characters = props => (
+    <MarvelList querykey={'characters'} fetcher={fetchCharacters} heading="Characters" {...props} />
+);
+
+export const getStaticProps = async () => {
+    const characters = await fetchData('/characters', { orderBy: 'name' });
+    return { props: { characters } };
 };
 
-export const getStaticProps = () => {
-    const fetchParams = { offset: 500 };
-    return getProps('/characters', fetchParams);
-};
-export default CharacterList;
+export default Characters;

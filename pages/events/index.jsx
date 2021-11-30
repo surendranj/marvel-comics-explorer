@@ -1,11 +1,13 @@
-import List from '../../src/components/list';
-import { getProps } from '../../src/utils/fetchData';
+import { fetchData, fetchEvents } from '../../src/utils/helpers';
+import MarvelList from '../../src/components/marvel-list';
 
-const EventsList = ({ data: eventsList }) => {
-    return <List list={eventsList} heading="Events" />;
+const Events = props => (
+    <MarvelList querykey={'events'} fetcher={fetchEvents} heading="Events" {...props} />
+);
+
+export const getStaticProps = async () => {
+    const events = await fetchData('/events', { orderBy: 'name' });
+    return { props: { events } };
 };
 
-export const getStaticProps = () => {
-    return getProps('/events');
-};
-export default EventsList;
+export default Events;

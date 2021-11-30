@@ -1,13 +1,13 @@
-import { getProps } from '../../src/utils/fetchData';
-import List from '../../src/components/list';
+import { fetchData, fetchSeries } from '../../src/utils/helpers';
+import MarvelList from '../../src/components/marvel-list';
 
-const SeriesList = ({ data: seriesList }) => {
-    return <List list={seriesList} heading="Series" />;
+const Series = props => (
+    <MarvelList querykey={'series'} fetcher={fetchSeries} heading="Series" {...props} />
+);
+
+export const getStaticProps = async () => {
+    const series = await fetchData('/series', { orderBy: 'title' });
+    return { props: { series } };
 };
 
-export const getStaticProps = () => {
-    const fetchParams = { offset: 100 };
-
-    return getProps('/series', fetchParams);
-};
-export default SeriesList;
+export default Series;

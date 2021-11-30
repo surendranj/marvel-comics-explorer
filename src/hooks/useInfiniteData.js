@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from 'react-query';
 import { filterImages, removeDuplicates } from '../utils/helpers';
 
-const useInfiniteData = (key, fetcher, props) =>
-    useInfiniteQuery(key, fetcher, {
-        initialData: { pages: [props[key]], pageParams: [0] },
+const useInfiniteData = (queryKey, fetcher, props) =>
+    useInfiniteQuery(queryKey, fetcher, {
+        initialData: { pages: [props[queryKey]], pageParams: [0] },
         select: data => {
             const pages = data.pages.map(page => page.data.results);
             const pagesWithImages = pages.map(page => filterImages(page));

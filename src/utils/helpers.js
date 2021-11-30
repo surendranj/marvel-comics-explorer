@@ -24,6 +24,26 @@ export const fetchComics = async ({ pageParam = 0 }) => {
     const data = await fetchData('/comics', { offset: pageParam, orderBy: 'title' });
     return data;
 };
+
+export const fetchCharacters = async ({ pageParam = 0 }) => {
+    const data = await fetchData('/characters', { offset: pageParam, orderBy: 'name' });
+    return data;
+};
+
+export const fetchEvents = async ({ pageParam = 0 }) => {
+    const data = await fetchData('/events', { offset: pageParam, orderBy: 'name' });
+    return data;
+};
+
+export const fetchSeries = async ({ pageParam = 0 }) => {
+    const data = await fetchData('/series', { offset: pageParam, orderBy: 'title' });
+    return data;
+};
+export const fetchStories = async ({ pageParam = 0 }) => {
+    const data = await fetchData('/stories', { offset: pageParam, orderBy: 'id' });
+    return data;
+};
+
 export const filterImages = list =>
     list.filter(el => {
         if (el.thumbnail) {

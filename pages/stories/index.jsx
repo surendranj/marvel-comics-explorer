@@ -1,11 +1,13 @@
-import { getProps } from '../../src/utils/fetchData';
-import List from '../../src/components/list';
+import { fetchData, fetchStories } from '../../src/utils/helpers';
+import MarvelList from '../../src/components/marvel-list';
 
-const StoriesList = ({ data: storiesList }) => {
-    return <List list={storiesList} heading="Stories" />;
+const Stories = props => (
+    <MarvelList querykey={'stories'} fetcher={fetchStories} heading="Stories" {...props} />
+);
+
+export const getStaticProps = async () => {
+    const stories = await fetchData('/stories', { orderBy: 'id' });
+    return { props: { stories } };
 };
 
-export const getStaticProps = () => {
-    return getProps('/stories');
-};
-export default StoriesList;
+export default Stories;
