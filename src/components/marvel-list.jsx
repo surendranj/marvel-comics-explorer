@@ -1,6 +1,8 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import List from './list';
 import useInfiniteData from '../hooks/useInfiniteData';
+import Loader from './loader';
+import EndMessage from './end-message';
 
 const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
     const { data, fetchNextPage, hasNextPage, isLoading, isError, error } = useInfiniteData(
@@ -16,9 +18,10 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
             dataLength={data.pages.length}
             next={() => fetchNextPage()}
             hasMore={hasNextPage}
-            loader={'Loading...'}
-            endMessage={'Yay! You have seen it all'}
-            scrollThreshold={0.5}
+            loader={<Loader />}
+            endMessage={<EndMessage />}
+            // endMessage={<Loader />}
+            scrollThreshold={1}
         >
             <List list={data.pages.flat()} heading={heading} />
         </InfiniteScroll>

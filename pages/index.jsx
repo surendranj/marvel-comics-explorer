@@ -1,5 +1,12 @@
+import Loader from '../src/components/loader';
+
 const HomePage = () => {
-    return <h1 className="test">Home Page</h1>;
+    return (
+        <div>
+            <h1 className="test">Home Page</h1>
+            <Loader />
+        </div>
+    );
 };
 
 export default HomePage;

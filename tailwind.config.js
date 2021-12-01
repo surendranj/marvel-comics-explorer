@@ -7,7 +7,7 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                groot: "url('/images/groot.jpg')",
+                groot: "url('/images/background/groot.jpg')",
             },
             boxShadow: {
                 customBottom: '0px 3px 3px -1px #a61419',

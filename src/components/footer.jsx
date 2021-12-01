@@ -2,8 +2,8 @@ const Footer = () => {
     const today = new Date();
     const year = today.getFullYear();
     return (
-        <footer className="mt-auto mx-4 text-tertiary text-lg ">
-            <a className="bg-white px-2 border-0 rounded" href="https://www.marvel.com/">
+        <footer className="bg-white mt-auto text-tertiary text-lg fixed bottom-0 w-full z-50">
+            <a className=" px-2 " href="https://www.marvel.com/">
                 Data provided by Marvel. &copy; {year} Marvel
             </a>
         </footer>

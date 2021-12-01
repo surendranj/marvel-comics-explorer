@@ -18,7 +18,12 @@ export const getStaticPaths = () => {
 };
 
 // fetch data from /characaters/id endpoint
-export const getStaticProps = ({ params }) => {
-    return getProps(`/comics/${params.comicId}`);
+// export const getStaticProps = ({ params }) => {
+//     return getProps(`/comics/${params.comicId}`);
+// };
+
+export const getStaticProps = async ({ params }) => {
+    const comics = await fetchData(`/comics/${params.comicId}`);
+    return { props: { comics } };
 };
 export default ComicDetails;

@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import marvelLogo from '../../public/images/Marvel_Logo.svg';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 

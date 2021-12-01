@@ -21,7 +21,6 @@ const Details = ({ data }) => {
                     blurDataURL={`${imagePath}/portrait_small.${imageExtension}`}
                 />
             )}
-            <Footer />
         </div>
     );
 };

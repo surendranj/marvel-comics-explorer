@@ -12,7 +12,6 @@ const List = ({ list, heading }) => {
                     <Card key={el.id} {...el}></Card>
                 ))}
             </div>
-            <Footer />
         </section>
     );
 };
