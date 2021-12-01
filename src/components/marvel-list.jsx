@@ -13,14 +13,13 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
     );
     if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <h1>{error.message}</h1>;
-
     return (
         <>
             <InfiniteScroll
                 dataLength={data.pages.length}
                 next={() => fetchNextPage()}
                 hasMore={hasNextPage}
-                loader={<Loader />}
+                loader={<Loader className="flex justify-center mt-1" />}
                 endMessage={<EndMessage />}
                 scrollThreshold={0.7}
             >

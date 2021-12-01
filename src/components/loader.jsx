@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import rings from '../../public/images/svg-loaders/rings.svg';
+import spinningCircles from '../../public/images/svg-loaders/spinning-circles.svg';
 
-const Loader = () => (
-    <div className="flex justify-center mt-1">
-        <Image src={rings} alt="page loading animation" />
+const Loader = ({ className }) => (
+    <div className={className}>
+        <Image src={spinningCircles} alt="page loading animation" />
     </div>
 );
 

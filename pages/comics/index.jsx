@@ -6,7 +6,7 @@ const Comics = props => (
 );
 
 export const getStaticProps = async () => {
-    const comics = await fetchData('/comics', { orderBy: 'title' });
+    const comics = await fetchData('/comics', { orderBy: 'issueNumber' });
     return { props: { comics } };
 };
 

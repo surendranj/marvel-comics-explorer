@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-// import 'tailwindcss/tailwind.css';
 import Layout from '../src/components/layout';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

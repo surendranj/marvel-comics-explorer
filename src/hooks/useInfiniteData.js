@@ -1,12 +1,13 @@
 import { useInfiniteQuery } from 'react-query';
-import { filterImages, removeDuplicates } from '../utils/helpers';
+import { filterImages, filterDesc, removeDuplicates } from '../utils/helpers';
 
 const useInfiniteData = (queryKey, fetcher, props) =>
     useInfiniteQuery(queryKey, fetcher, {
         initialData: { pages: [props[queryKey]], pageParams: [0] },
         select: data => {
             const pages = data.pages.map(page => page.data.results);
-            const pagesWithImages = pages.map(page => filterImages(page));
+            const pagesWithDescription = pages.map(page => filterDesc(page));
+            const pagesWithImages = pagesWithDescription.map(page => filterImages(page));
             const uniquePages = removeDuplicates(pagesWithImages);
             return { pages: uniquePages, pageParams: data.pageParams };
         },

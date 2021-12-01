@@ -25,7 +25,7 @@ export const fetchData = async (endPoint, fetchParams = null) => {
     }
 };
 export const fetchComics = async ({ pageParam = 0 }) => {
-    const data = await fetchData('/comics', { offset: pageParam, orderBy: 'title' });
+    const data = await fetchData('/comics', { offset: pageParam, orderBy: 'issueNumber' });
     return data;
 };
 
@@ -56,6 +56,9 @@ export const filterImages = list =>
             return el;
         }
     });
+
+export const filterDesc = list => list.filter(el => el.description);
+
 export const removeDuplicates = pages => {
     const uniquePages = pages.reduce((prevPages, lastPage) => {
         if (prevPages.length === 0) {
