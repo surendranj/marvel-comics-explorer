@@ -1,29 +1,30 @@
-import { getPaths, getProps } from '../../src/utils/fetchData';
-import Details from '../../src/components/details';
 import { useRouter } from 'next/router';
+import { fetchData } from '../../src/utils/helpers';
+import Loader from '../../src/components/loader';
 
-const ComicDetails = ({ data }) => {
+const ComicDetails = ({ comic }) => {
     const router = useRouter();
-    //if details page is not pre-rendered by static paths fallback page is served.
-    //else details page is served.
     if (router.isFallback) {
-        return <h1>Loading..</h1>;
+        return <Loader />;
     }
-    return <Details data={data} />;
+    return null;
 };
 
-//create paths from /comics endpoint for pre-rendering
-export const getStaticPaths = () => {
-    return getPaths('/comics', 'comicId');
+export const getStaticPaths = async () => {
+    const comics = await fetchData('/comics', { orderBy: 'title', limit: 3 });
+    const paths = comics.data.results.map(comic => {
+        return { params: { comicId: `${comic.id}` } };
+    });
+    return { paths, fallback: true };
 };
-
-// fetch data from /characaters/id endpoint
-// export const getStaticProps = ({ params }) => {
-//     return getProps(`/comics/${params.comicId}`);
-// };
 
 export const getStaticProps = async ({ params }) => {
-    const comics = await fetchData(`/comics/${params.comicId}`);
-    return { props: { comics } };
+    const comic = await fetchData(`/comics/${params.comicId}`);
+    if (!comic) {
+        return {
+            notFound: true,
+        };
+    }
+    return { props: { comic } };
 };
 export default ComicDetails;

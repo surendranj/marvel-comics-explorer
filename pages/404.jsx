@@ -16,7 +16,8 @@ const PageNotFound = () => {
             <div className="z-0">
                 <p className="text-white mb-1">
                     <span className="text-5xl text-primary">Uh oh...</span>
-                    <br /> We can&apos;t find the page you&apos;re looking for
+                    <br /> We can&apos;t find the <span className="text-primary">page</span>{' '}
+                    you&apos;re looking for
                 </p>
                 <TransparentPrimaryBtn handleClick={() => router.back()} className="mr-2">
                     Back

@@ -16,9 +16,13 @@ export const fetchData = async (endPoint, fetchParams = null) => {
         apikey,
         ...fetchParams,
     };
-    const response = await axios.get(BASE_URL + endPoint, { params });
-    const data = response.data;
-    return data;
+    try {
+        const response = await axios.get(BASE_URL + endPoint, { params });
+        const data = response.data;
+        return data;
+    } catch (error) {
+        console.log('ERROR: ', error.message);
+    }
 };
 export const fetchComics = async ({ pageParam = 0 }) => {
     const data = await fetchData('/comics', { offset: pageParam, orderBy: 'title' });

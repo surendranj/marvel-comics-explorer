@@ -1,5 +1,4 @@
 import Card from './card';
-import Footer from './footer';
 
 const List = ({ list, heading }) => {
     return (

@@ -3,6 +3,7 @@ import List from './list';
 import useInfiniteData from '../hooks/useInfiniteData';
 import Loader from './loader';
 import EndMessage from './end-message';
+import Footer from './footer';
 
 const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
     const { data, fetchNextPage, hasNextPage, isLoading, isError, error } = useInfiniteData(
@@ -14,17 +15,19 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
     if (isError) return <h1>{error.message}</h1>;
 
     return (
-        <InfiniteScroll
-            dataLength={data.pages.length}
-            next={() => fetchNextPage()}
-            hasMore={hasNextPage}
-            loader={<Loader />}
-            endMessage={<EndMessage />}
-            // endMessage={<Loader />}
-            scrollThreshold={0.8}
-        >
-            <List list={data.pages.flat()} heading={heading} />
-        </InfiniteScroll>
+        <>
+            <InfiniteScroll
+                dataLength={data.pages.length}
+                next={() => fetchNextPage()}
+                hasMore={hasNextPage}
+                loader={<Loader />}
+                endMessage={<EndMessage />}
+                scrollThreshold={0.7}
+            >
+                <List list={data.pages.flat()} heading={heading} />
+            </InfiniteScroll>
+            <Footer />
+        </>
     );
 };
 
