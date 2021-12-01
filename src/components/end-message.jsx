@@ -1,5 +1,5 @@
 const EndMessage = () => {
-    return <div className="my-2 h-5">{/* <p>Yay! You have</p> */}</div>;
+    return <div className="my-10"></div>;
 };
 
 export default EndMessage;
