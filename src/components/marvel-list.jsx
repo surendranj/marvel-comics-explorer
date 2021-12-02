@@ -21,7 +21,7 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
                 hasMore={hasNextPage}
                 loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
                 endMessage={<EndMessage />}
-                scrollThreshold={0.7}
+                scrollThreshold={0.8}
             >
                 <List list={data.pages.flat()} heading={heading} />
             </InfiniteScroll>

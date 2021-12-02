@@ -4,6 +4,11 @@ import FullScreenLoader from '../loader';
 import Image from 'next/image';
 import DetailsNav from './details-nav';
 import Footer from '../footer';
+import Creators from './creators';
+import Published from './published';
+import Description from './description';
+import Title from './title';
+import DetailsImage from './details-image';
 
 const MarvelDetails = ({ queryKey, fetcher, initialData }) => {
     const router = useRouter();
@@ -16,25 +21,16 @@ const MarvelDetails = ({ queryKey, fetcher, initialData }) => {
     if (isLoading) return <FullScreenLoader />;
     if (isError) console.log('Error:', error);
     const { results } = data.data;
-    const { title, name, thumbnail, description, urls } = results[0];
-    const { path: imagePath, extension: imageExtension } = thumbnail;
-    console.log(results[0]);
+    const { title, name, thumbnail, description, urls, creators, dates } = results[0];
     return (
         <>
             <article className="flex flex-col text-tertiary bg-white">
-                <h1 className="flex justify-center p-1 border-primary border-b border-t">
-                    {name || title}
-                </h1>
-                <Image
-                    src={`${imagePath}/portrait_uncanny.${imageExtension}`}
-                    alt={title || name}
-                    width="300"
-                    height="450"
-                    placeholder="blur"
-                    blurDataURL={`${imagePath}/portrait_small.${imageExtension}`}
-                />
-                <section className="bg-white border-t border-b border-primary text-xl p-2">
-                    <p>{description}</p>
+                <Title name={name} title={title} />
+                <DetailsImage thumbnail={thumbnail} title={title} name={name} />
+                <section className="flex flex-col gap-4 bg-white border-t border-b border-primary text-xl">
+                    <Description>{description}</Description>
+                    <Published dates={dates} />
+                    <Creators creators={creators} />
                     <DetailsNav urls={urls} />
                 </section>
             </article>

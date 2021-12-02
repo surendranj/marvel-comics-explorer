@@ -15,7 +15,7 @@ const Card = ({ id, title, name, thumbnail }) => {
             <a className="flex flex-col">
                 <article className="text-white hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md flex flex-col flex-grow max-w-300">
                     <header className="z-10 text-tertiary bg-white p-0.5 flex-grow flex items-center justify-center">
-                        <h2 className="text-base">{title || name}</h2>
+                        <h2>{title || name}</h2>
                     </header>
                     <div className="flex transform hover:scale-110 transition-transform duration-300 ease-in-out">
                         {thumbnail && (

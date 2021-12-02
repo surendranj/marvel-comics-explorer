@@ -25,14 +25,28 @@ export const removeDuplicates = pages => {
     }, []);
     return uniquePages;
 };
+export const upperCaseFirst = str => str[0].toUpperCase() + str.slice(1);
 
-export const destructureFn = ({ id, title, name, thumbnail }) => {
-    const destructered = { id, title, name, thumbnail };
-    return destructered;
+export const splitStringOnCaps = str => {
+    const split = str.match(/[A-Z][a-z]+/g);
+    return split.join(', ');
 };
 
-export const removeUndefined = obj => {
-    const newObj = obj;
-    Object.keys(newObj).map(key => newObj[key] === undefined && delete newObj[key]);
-    return newObj;
+export const findIdFromResourceURI = resourceURI => {
+    const idIndex = resourceURI.lastIndexOf('/') + 1;
+    return resourceURI.slice(idIndex);
+};
+
+export const reduceCreators = creatorsList => {
+    const reducedCreators = creatorsList.reduce((creators, currCreator) => {
+        if (`${[currCreator.role]}` in creators) {
+            creators[currCreator.role].push(currCreator.name);
+        } else {
+            creators[currCreator.role] = [];
+            creators[currCreator.role].push(currCreator.name);
+        }
+
+        return creators;
+    }, {});
+    return reducedCreators;
 };
