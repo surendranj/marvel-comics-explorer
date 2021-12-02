@@ -1,6 +1,6 @@
 import NavBar from './nav-bar';
 import Head from 'next/head';
-import Loader from './loader';
+import FullScreenLoader from './loader';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -9,11 +9,9 @@ const Layout = ({ children }) => {
     const [isChangingRoute, setIsChangingRoute] = useState(false);
     useEffect(() => {
         router.events.on('routeChangeStart', () => {
-            console.log('route Change started');
             setIsChangingRoute(true);
         });
         router.events.on('routeChangeComplete', () => {
-            console.log('route change completed');
             setIsChangingRoute(false);
         });
     }, [router.events]);
@@ -27,8 +25,9 @@ const Layout = ({ children }) => {
                 <NavBar />
             </header>
             <main className="relative z-40 flex flex-grow flex-col justify-center">{children}</main>
-            {isChangingRoute && <Loader className="fixed z-40 w-full h-full flex justify-center" />}
-            {/* <Loader className="fixed z-40 w-full h-full flex justify-center" /> */}
+            {isChangingRoute && (
+                <FullScreenLoader className="fixed z-40 w-full h-full flex justify-center bg-white opacity-75" />
+            )}
         </div>
     );
 };

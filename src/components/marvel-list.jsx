@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import List from './list';
 import useInfiniteData from '../hooks/useInfiniteData';
-import Loader from './loader';
+import { InfiniteScrollLoader } from './loader';
 import EndMessage from './end-message';
 import Footer from './footer';
 
@@ -19,7 +19,7 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
                 dataLength={data.pages.length}
                 next={() => fetchNextPage()}
                 hasMore={hasNextPage}
-                loader={<Loader className="flex justify-center mt-1" />}
+                loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
                 endMessage={<EndMessage />}
                 scrollThreshold={0.7}
             >

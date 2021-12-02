@@ -1,10 +1,17 @@
 import Image from 'next/image';
-import spinningCircles from '../../public/images/svg-loaders/spinning-circles.svg';
+import puffRed from '../../public/images/svg-loaders/puff-red.svg';
+import puff from '../../public/images/svg-loaders/puff.svg';
 
-const Loader = ({ className }) => (
+const FullScreenLoader = ({ className }) => (
     <div className={className}>
-        <Image src={spinningCircles} alt="page loading animation" />
+        <Image src={puffRed} alt="page transition loader" />
     </div>
 );
 
-export default Loader;
+export const InfiniteScrollLoader = ({ className }) => (
+    <div className={className}>
+        <Image src={puff} alt="page transition loader" />
+    </div>
+);
+
+export default FullScreenLoader;

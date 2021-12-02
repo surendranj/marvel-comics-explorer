@@ -23,7 +23,7 @@ const ComicDetails = ({ comicDetails }) => {
     );
 
     if (router.isFallback) {
-        return <Loader />;
+        return null;
     }
     if (isLoading) return <Loader />;
     if (isError) console.log('Error:', error);
