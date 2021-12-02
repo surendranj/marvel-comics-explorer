@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const NavBar = () => {
+const NavBar = ({ toggleNavBar, translate }) => {
     const router = useRouter();
     const { pathname } = router;
     const paths = {
@@ -12,18 +12,6 @@ const NavBar = () => {
         Events: '/events',
         Series: '/series',
     };
-    const [navBarDropDown, setnavBarDropDown] = useState(false);
-    const [translate, setTranslate] = useState('-top-40');
-    const handleClick = () => {
-        setnavBarDropDown(!navBarDropDown);
-    };
-    useEffect(() => {
-        if (navBarDropDown) {
-            setTranslate('top-full');
-        } else if (!navBarDropDown) {
-            setTranslate('-top-40');
-        }
-    }, [navBarDropDown]);
 
     return (
         <nav className="h-full flex justify-between text-white mx-4 items-center">
@@ -38,7 +26,7 @@ const NavBar = () => {
                 {Object.entries(paths).map(path => (
                     <li
                         key={path[0]}
-                        onClick={handleClick}
+                        onClick={toggleNavBar}
                         className={`border-b border-primary last:border-0 md:border-0  ${
                             pathname === path[1] && 'text-tertiary'
                         }`}
@@ -53,7 +41,7 @@ const NavBar = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                onClick={handleClick}
+                onClick={toggleNavBar}
             >
                 <path
                     strokeLinecap="round"
