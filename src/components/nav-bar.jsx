@@ -11,7 +11,6 @@ const NavBar = () => {
         Characters: '/characters',
         Events: '/events',
         Series: '/series',
-        Stories: '/stories',
     };
     const [navBarDropDown, setnavBarDropDown] = useState(false);
     const [translate, setTranslate] = useState('-top-40');

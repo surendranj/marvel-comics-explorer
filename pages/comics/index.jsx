@@ -1,9 +1,13 @@
-import { fetchData, fetchComics } from '../../src/utils/helpers';
+import { fetchData } from '../../src/utils/fetchData';
 import MarvelList from '../../src/components/marvel-list';
 
-const Comics = props => (
-    <MarvelList querykey={'comics'} fetcher={fetchComics} heading="Comics" {...props} />
-);
+const Comics = props => {
+    const fetchComics = async ({ pageParam = 0 }) => {
+        const data = await fetchData('/comics', { offset: pageParam, orderBy: 'issueNumber' });
+        return data;
+    };
+    return <MarvelList querykey={'comics'} fetcher={fetchComics} heading="Comics" {...props} />;
+};
 
 export const getStaticProps = async () => {
     const comics = await fetchData('/comics', { orderBy: 'issueNumber' });
