@@ -4,7 +4,7 @@ import puff from '../../public/images/svg-loaders/puff.svg';
 
 const FullScreenLoader = ({ className }) => (
     <div className={className}>
-        <Image src={puffRed} alt="page transition loader" />
+        <Image src={puffRed} alt="page transition loader" priority />
     </div>
 );
 

@@ -24,3 +24,19 @@ export const fetchData = async (endPoint, fetchParams = null) => {
         console.log('ERROR: ', error.message);
     }
 };
+export const getDetailsPaths = async (endPoint, queryId, fetchParams) => {
+    const data = await fetchData(endPoint, { ...fetchParams });
+    const paths = data.data.results.map(item => {
+        return { params: { [queryId]: `${item.id}` } };
+    });
+    return { paths, fallback: true };
+};
+export const getDetailsProps = async endPoint => {
+    const initialData = await fetchData(endPoint);
+    if (!initialData) {
+        return {
+            notFound: true,
+        };
+    }
+    return { props: { initialData } };
+};

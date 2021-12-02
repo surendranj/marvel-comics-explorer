@@ -1,25 +1,29 @@
-import { getPaths, getProps } from '../../src/utils/fetchData';
-import Details from '../../src/components/details';
 import { useRouter } from 'next/router';
+import { fetchData, getDetailsProps, getDetailsPaths } from '../../src/utils/fetchData';
+import MarvelDetails from '../../src/components/details/marvel-details';
 
-const SeriesDetails = ({ data }) => {
+const SeriesDetails = ({ initialData }) => {
     const router = useRouter();
-    //if details page is not pre-rendered by static paths fallback page is served.
-    //else details page is served.
-    if (router.isFallback) {
-        return <h1>Loading..</h1>;
-    }
-    return <Details data={data} />;
+    const { seriesId } = router.query;
+    const queryKey = ['series', { seriesId }];
+    const fetchSeriesDetails = async () => {
+        const seriesDetails = fetchData(`/series/${seriesId}`);
+        return seriesDetails;
+    };
+    return (
+        <MarvelDetails initialData={initialData} queryKey={queryKey} fetcher={fetchSeriesDetails} />
+    );
 };
 
-//create paths from /series endpoint for pre-rendering
-export const getStaticPaths = () => {
-    return getPaths('/series', 'seriesId');
+export const getStaticPaths = async () => {
+    const paths = await getDetailsPaths('/series', 'seriesId', { orderBy: 'title', limit: 3 });
+    return paths;
 };
 
-// fetch data from /characaters/id endpoint
-export const getStaticProps = ({ params }) => {
-    return getProps(`/series/${params.seriesId}`);
+export const getStaticProps = async ({ params }) => {
+    const endPoint = `/series/${params.seriesId}`;
+    const initialData = await getDetailsProps(endPoint);
+    return initialData;
 };
 
 export default SeriesDetails;
