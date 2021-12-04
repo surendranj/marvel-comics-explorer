@@ -1,17 +1,30 @@
-import { fetchData } from '../../src/utils/fetchData';
+import { getListProps } from '../../src/utils/fetchData';
+import useList from '../../src/hooks/useList';
+import useInfiniteData from '../../src/hooks/useInfiniteData';
 import MarvelList from '../../src/components/marvel-list';
+import { createContext } from 'react';
 
-const Events = props => {
-    const fetchEvents = async ({ pageParam = 0 }) => {
-        const data = await fetchData('/events', { offset: pageParam, orderBy: 'name' });
-        return data;
-    };
-    return <MarvelList querykey={'events'} fetcher={fetchEvents} heading="Events" {...props} />;
-};
+const endPoint = '/events';
+const fetchParams = { orderBy: 'name' };
+const queryKey = ['events', endPoint, fetchParams];
+const infiniteQueryKey = ['events-infinite', endPoint, fetchParams];
 
-export const getStaticProps = async () => {
-    const events = await fetchData('/events', { orderBy: 'name' });
-    return { props: { events } };
+export const EventsContext = createContext();
+
+export const getStaticProps = async () => await getListProps(queryKey);
+
+const Events = () => {
+    const initialStaticData = useList(queryKey);
+    const { data, fetchNextPage, hasNextPage } = useInfiniteData(
+        infiniteQueryKey,
+        initialStaticData
+    );
+
+    return (
+        <EventsContext.Provider value={{ data, fetchNextPage, hasNextPage, heading: 'Events' }}>
+            <MarvelList />
+        </EventsContext.Provider>
+    );
 };
 
 export default Events;

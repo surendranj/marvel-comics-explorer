@@ -1,17 +1,30 @@
-import { fetchData } from '../../src/utils/fetchData';
+import { getListProps } from '../../src/utils/fetchData';
+import useList from '../../src/hooks/useList';
+import useInfiniteData from '../../src/hooks/useInfiniteData';
 import MarvelList from '../../src/components/marvel-list';
+import { createContext } from 'react';
 
-const Series = props => {
-    const fetchSeries = async ({ pageParam = 0 }) => {
-        const data = await fetchData('/series', { offset: pageParam, orderBy: 'title' });
-        return data;
-    };
-    return <MarvelList querykey={'series'} fetcher={fetchSeries} heading="Series" {...props} />;
-};
+const endPoint = '/series';
+const fetchParams = { orderBy: 'title' };
+const queryKey = ['series', endPoint, fetchParams];
+const infiniteQueryKey = ['series-infinite', endPoint, fetchParams];
 
-export const getStaticProps = async () => {
-    const series = await fetchData('/series', { orderBy: 'title' });
-    return { props: { series } };
+export const SeriesContext = createContext();
+
+export const getStaticProps = async () => await getListProps(queryKey);
+
+const Series = () => {
+    const initialStaticData = useList(queryKey);
+    const { data, fetchNextPage, hasNextPage } = useInfiniteData(
+        infiniteQueryKey,
+        initialStaticData
+    );
+
+    return (
+        <SeriesContext.Provider value={{ data, fetchNextPage, hasNextPage, heading: 'Series' }}>
+            <MarvelList />
+        </SeriesContext.Provider>
+    );
 };
 
 export default Series;
