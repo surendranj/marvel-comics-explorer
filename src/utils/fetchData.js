@@ -1,5 +1,6 @@
 import axios from 'axios';
 import md5 from 'md5';
+import { dehydrate, QueryClient } from 'react-query';
 
 export const fetchData = async (endPoint, fetchParams = null) => {
     const apiConfig = {
@@ -23,6 +24,19 @@ export const fetchData = async (endPoint, fetchParams = null) => {
     } catch (error) {
         console.log('ERROR: ', error.message);
     }
+};
+
+export const getListProps = async queryKey => {
+    const [key, endPoint, fetchParams] = queryKey;
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery([key, endPoint, fetchParams], () =>
+        fetchData(endPoint, fetchParams)
+    );
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+        },
+    };
 };
 export const getDetailsPaths = async (endPoint, queryId, fetchParams) => {
     const data = await fetchData(endPoint, { ...fetchParams });

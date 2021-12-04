@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import useDetails from '../../hooks/useDetails';
 import FullScreenLoader from '../loader';
-import Image from 'next/image';
 import DetailsNav from './details-nav';
 import Footer from '../footer';
 import Creators from './creators';
