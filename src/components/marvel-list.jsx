@@ -1,18 +1,13 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import List from './list';
-import useInfiniteData from '../hooks/useInfiniteData';
+import Footer from './footer';
 import { InfiniteScrollLoader } from './loader';
 import EndMessage from './end-message';
-import Footer from './footer';
+import { useContext } from 'react';
+import { ComicsContext } from '../../pages/comics';
 
-const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
-    const { data, fetchNextPage, hasNextPage, isLoading, isError, error } = useInfiniteData(
-        querykey,
-        fetcher,
-        props
-    );
-    if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <h1>{error.message}</h1>;
+const MarvelList = () => {
+    const { data, fetchNextPage, hasNextPage } = useContext(ComicsContext);
     return (
         <>
             <InfiniteScroll
@@ -21,9 +16,8 @@ const MarvelList = ({ querykey, fetcher, heading, ...props }) => {
                 hasMore={hasNextPage}
                 loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
                 endMessage={<EndMessage />}
-                scrollThreshold={0.8}
             >
-                <List list={data.pages.flat()} heading={heading} />
+                <List list={data.pages.flat()} heading="Comics" />
             </InfiniteScroll>
             <Footer />
         </>
