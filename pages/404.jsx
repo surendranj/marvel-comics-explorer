@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { TransparentPrimaryBtn } from '../src/components/buttons';
+import PhotoCredits from '../src/components/photo-credits';
 
 const PageNotFound = () => {
     const router = useRouter();
@@ -26,6 +27,7 @@ const PageNotFound = () => {
                     Home
                 </TransparentPrimaryBtn>
             </div>
+            <PhotoCredits />
         </section>
     );
 };

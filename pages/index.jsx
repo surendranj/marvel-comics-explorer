@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { NavBtn } from '../src/components/buttons';
 import { motion } from 'framer-motion';
+import PhotoCredits from '../src/components/photo-credits';
 
 const HomePage = () => {
     const links = {
@@ -10,7 +11,7 @@ const HomePage = () => {
         Series: '/series',
     };
     return (
-        <section className="relative flex flex-col flex-grow  h-full  text-center text-tertiary lg:text-5xl">
+        <section className="relative flex flex-col flex-grow  h-full  text-center text-tertiary md:text-4xl ">
             <div className="relative z-0 h-screen w-screen">
                 <Image
                     src="https://source.unsplash.com/wYzjL5BwiEI"
@@ -29,7 +30,7 @@ const HomePage = () => {
                     Click on the links below to start exploring the Marvel Universe.
                 </p>
                 <nav className="py-1 flex-grow flex justify-center items-center md:flex-grow-0.4">
-                    <ul className="flex flex-col md:flex-row md:gap-20">
+                    <ul className="flex flex-col md:flex-row md:gap-20 md:text-2xl">
                         {Object.entries(links).map(([pathName, path]) => (
                             <li key={pathName}>
                                 <a href={path}>
@@ -40,6 +41,7 @@ const HomePage = () => {
                     </ul>
                 </nav>
             </div>
+            <PhotoCredits />
         </section>
     );
 };

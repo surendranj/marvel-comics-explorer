@@ -23,7 +23,7 @@ const MarvelDetails = ({ queryKey, fetcher, initialData }) => {
     const { title, name, thumbnail, description, urls, creators, dates } = results[0];
     return (
         <>
-            <article className="flex flex-col text-tertiary bg-white">
+            <article className="flex flex-col flex-grow text-tertiary bg-white">
                 <Title name={name} title={title} />
                 <DetailsImage thumbnail={thumbnail} title={title} name={name} />
                 <section className="flex flex-col gap-4 bg-white border-t border-b border-primary text-xl">

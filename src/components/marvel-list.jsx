@@ -20,15 +20,17 @@ const MarvelList = () => {
 
     return (
         <>
-            <InfiniteScroll
-                dataLength={data.pages.length}
-                next={() => fetchNextPage()}
-                hasMore={isChangingRoute ? !hasNextPage : hasNextPage}
-                loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
-                endMessage={<EndMessage />}
-            >
-                <List list={data.pages.flat()} heading={heading} />
-            </InfiniteScroll>
+            <div className={'flex-grow'}>
+                <InfiniteScroll
+                    dataLength={data.pages.length}
+                    next={() => fetchNextPage()}
+                    hasMore={isChangingRoute ? !hasNextPage : hasNextPage}
+                    loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
+                    endMessage={<EndMessage />}
+                >
+                    <List list={data.pages.flat()} heading={heading} />
+                </InfiniteScroll>
+            </div>
             <Footer />
         </>
     );
