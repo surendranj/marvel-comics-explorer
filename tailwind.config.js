@@ -6,6 +6,12 @@ module.exports = {
     // mode: 'jit',
     theme: {
         extend: {
+            width: {
+                300: '300px',
+            },
+            height: {
+                450: '450px',
+            },
             backgroundImage: {
                 deadpool: "url('/images/background/deadpool.jpg')",
             },

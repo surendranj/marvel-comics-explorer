@@ -5,7 +5,7 @@ import MarvelList from '../../src/components/marvel-list';
 import { createContext } from 'react';
 
 const endPoint = '/series';
-const fetchParams = { orderBy: 'title' };
+const fetchParams = { limit: 50, orderBy: 'title' };
 const queryKey = ['series', endPoint, fetchParams];
 const infiniteQueryKey = ['series-infinite', endPoint, fetchParams];
 
