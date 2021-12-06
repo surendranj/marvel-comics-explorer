@@ -13,7 +13,7 @@ const Card = ({ id, title, name, thumbnail }) => {
         // <Link href={`${router.pathname}/${id}`} passHref>
         <Link href={`${router.pathname}/${id}`} passHref>
             <a className="flex flex-col">
-                <article className="text-white hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md flex flex-col flex-grow max-w-300">
+                <article className="text-white hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md flex flex-col flex-grow max-w-300 ring-2 ring-tertiary">
                     <header className="z-10 text-tertiary bg-white p-0.5 flex-grow flex items-center justify-center">
                         <h2>{title || name}</h2>
                     </header>

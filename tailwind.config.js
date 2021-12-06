@@ -7,7 +7,7 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                groot: "url('/images/background/groot.jpg')",
+                deadpool: "url('/images/background/deadpool.jpg')",
             },
             boxShadow: {
                 customBottom: '0px 3px 3px -1px #a61419',
@@ -16,11 +16,18 @@ module.exports = {
             flexGrow: {
                 0.9: 0.9,
                 0.8: 0.8,
+                0.7: 0.7,
+                0.6: 0.6,
+                0.5: 0.5,
+                0.4: 0.4,
+                0.3: 0.3,
+                0.2: 0.2,
+                0.1: 0.1,
             },
 
             colors: {
                 primary: '#ED1D24',
-                secondary: 'white',
+                secondary: '#F68E92',
                 tertiary: '#47090B',
             },
             zIndex: {
@@ -45,7 +52,12 @@ module.exports = {
         },
     },
     variants: {
-        extend: { borderWidth: ['last'], borderColor: ['last'], cursor: ['hover'] },
+        extend: {
+            borderWidth: ['last'],
+            borderColor: ['last'],
+            cursor: ['hover'],
+            ringColor: ['hover'],
+        },
     },
     plugins: [],
 };

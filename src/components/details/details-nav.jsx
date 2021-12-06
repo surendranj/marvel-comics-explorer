@@ -1,4 +1,5 @@
 import { upperCaseFirst, splitStringOnCaps } from '../../utils/helpers';
+import { NavBtn } from '../buttons';
 
 const DetailsNav = ({ urls }) => (
     <nav className="mt-2 px-2">
@@ -9,12 +10,9 @@ const DetailsNav = ({ urls }) => (
                     const { type: urlName, url } = urlObj;
                     const modifiedUrlName = splitStringOnCaps(upperCaseFirst(urlName));
                     return (
-                        <li
-                            key={modifiedUrlName}
-                            className="border rounded-md px-2 bg-tertiary text-white flex items-center justify-center w-1/4 my-2"
-                        >
+                        <li key={modifiedUrlName}>
                             <a href={url} target="_blank" rel="noreferrer">
-                                {modifiedUrlName}
+                                <NavBtn>{modifiedUrlName}</NavBtn>
                             </a>
                         </li>
                     );

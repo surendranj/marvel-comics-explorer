@@ -8,3 +8,11 @@ export const TransparentPrimaryBtn = ({ children, className, handleClick }) => {
         </button>
     );
 };
+
+export const NavBtn = ({ children }) => {
+    return (
+        <button className="rounded-md px-2 my-2 bg-tertiary text-white ring-2 ring-primary hover:ring-secondary">
+            {children}
+        </button>
+    );
+};

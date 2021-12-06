@@ -10,7 +10,7 @@ const FullScreenLoader = ({ className }) => (
 
 export const InfiniteScrollLoader = ({ className }) => (
     <div className={className}>
-        <Image src={puff} alt="page transition loader" />
+        <Image src={puffRed} alt="page transition loader" />
     </div>
 );
 
