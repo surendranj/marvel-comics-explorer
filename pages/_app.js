@@ -26,13 +26,13 @@ function MyApp({ Component, pageProps }) {
     }, [router.events]);
     return (
         <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-                <RouteContext.Provider value={isChangingRoute}>
-                    <Layout>
+            <RouteContext.Provider value={isChangingRoute}>
+                <Layout>
+                    <Hydrate state={pageProps.dehydratedState}>
                         <Component {...pageProps} />
-                    </Layout>
-                </RouteContext.Provider>
-            </Hydrate>
+                    </Hydrate>
+                </Layout>
+            </RouteContext.Provider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right"></ReactQueryDevtools>
         </QueryClientProvider>
     );

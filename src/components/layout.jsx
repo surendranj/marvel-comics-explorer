@@ -24,6 +24,7 @@ const Layout = ({ children }) => {
             setTranslate('-top-40');
         }
     }, [navBarDropDown]);
+
     return (
         <div className="font-mouseMemoirs text-2xl min-h-screen flex flex-col">
             <Head>
@@ -41,9 +42,7 @@ const Layout = ({ children }) => {
             >
                 {children}
             </main>
-            {isChangingRoute && (
-                <FullScreenLoader className="fixed z-40 w-full h-full flex justify-center bg-white opacity-75" />
-            )}
+            {isChangingRoute && <FullScreenLoader />}
         </div>
     );
 };

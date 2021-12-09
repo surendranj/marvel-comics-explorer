@@ -5,7 +5,7 @@ import MarvelList from '../../src/components/marvel-list';
 import { createContext } from 'react';
 
 const endPoint = '/series';
-const fetchParams = { limit: 50, orderBy: 'title' };
+const fetchParams = { orderBy: 'title' };
 const queryKey = ['series', endPoint, fetchParams];
 const infiniteQueryKey = ['series-infinite', endPoint, fetchParams];
 
@@ -15,13 +15,15 @@ export const getStaticProps = async () => await getListProps(queryKey);
 
 const Series = () => {
     const initialStaticData = useList(queryKey);
-    const { data, fetchNextPage, hasNextPage } = useInfiniteData(
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteData(
         infiniteQueryKey,
         initialStaticData
     );
 
     return (
-        <SeriesContext.Provider value={{ data, fetchNextPage, hasNextPage, heading: 'Series' }}>
+        <SeriesContext.Provider
+            value={{ data, fetchNextPage, hasNextPage, isFetchingNextPage, heading: 'Series' }}
+        >
             <MarvelList />
         </SeriesContext.Provider>
     );

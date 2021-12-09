@@ -15,13 +15,15 @@ export const getStaticProps = async () => await getListProps(queryKey);
 
 const Comics = () => {
     const initialStaticData = useList(queryKey);
-    const { data, fetchNextPage, hasNextPage } = useInfiniteData(
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteData(
         infiniteQueryKey,
         initialStaticData
     );
 
     return (
-        <ComicsContext.Provider value={{ data, fetchNextPage, hasNextPage, heading: 'Comics' }}>
+        <ComicsContext.Provider
+            value={{ data, fetchNextPage, hasNextPage, isFetchingNextPage, heading: 'Comics' }}
+        >
             <MarvelList />
         </ComicsContext.Provider>
     );

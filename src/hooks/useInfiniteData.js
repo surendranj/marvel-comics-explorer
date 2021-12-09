@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from 'react-query';
-import { filterImages, filterDesc, removeDuplicates } from '../utils/helpers';
+import { cleanPage, filterDuplicates, sortData } from '../utils/helpers';
 import { fetchData } from '../utils/fetchData';
 
 const useInfiniteData = (queryKey, initialStaticData) => {
@@ -17,11 +17,8 @@ const useInfiniteData = (queryKey, initialStaticData) => {
                 );
             },
             select: data => {
-                const pages = data.pages.map(page => page.data.results);
-                const pagesWithDescription = pages.map(page => filterDesc(page));
-                const pagesWithImages = pagesWithDescription.map(page => filterImages(page));
-                const uniquePages = removeDuplicates(pagesWithImages);
-                return { ...data, pages: uniquePages, pageParams: data.pageParams };
+                const pages = data.pages.map(page => cleanPage(page.data.results));
+                return { ...data, pages, pageParams: data.pageParams };
             },
         }
     );

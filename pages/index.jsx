@@ -18,6 +18,7 @@ const HomePage = () => {
                     alt="Homepage Image"
                     layout="fill"
                     objectFit="cover"
+                    objectPosition="50% 100%"
                     priority
                     as="img"
                 />

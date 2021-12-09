@@ -3,7 +3,7 @@ import List from './list';
 import Footer from './footer';
 import { InfiniteScrollLoader } from './loader';
 import EndMessage from './end-message';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { ComicsContext } from '../../pages/comics';
 import { CharactersContext } from '../../pages/characters';
 import { EventsContext } from '../../pages/events';
@@ -16,7 +16,28 @@ const MarvelList = () => {
     const events = useContext(EventsContext);
     const series = useContext(SeriesContext);
     const isChangingRoute = useContext(RouteContext);
-    const { data, fetchNextPage, hasNextPage, heading } = comics || characters || events || series;
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage, heading } =
+        comics || characters || events || series;
+
+    const [items, setItems] = useState(null);
+    const [isNewPageEmpty, setIsNewPageEmpty] = useState(false);
+
+    useEffect(() => {
+        setItems([
+            ...data.pages
+                .flat()
+                .reduce((map, obj) => map.set(obj.id, obj), new Map())
+                .values(),
+        ]);
+    }, [data.pages]);
+
+    useEffect(() => {
+        if (data.pages.slice(-1)[0].length === 0) {
+            setIsNewPageEmpty(true);
+        } else {
+            setIsNewPageEmpty(false);
+        }
+    }, [data.pages]);
 
     return (
         <>
@@ -24,11 +45,11 @@ const MarvelList = () => {
                 <InfiniteScroll
                     dataLength={data.pages.length}
                     next={() => fetchNextPage()}
-                    hasMore={isChangingRoute ? !hasNextPage : hasNextPage}
-                    loader={<InfiniteScrollLoader className="flex justify-center mt-1" />}
+                    hasMore={isChangingRoute ? !hasNextPage : isNewPageEmpty || hasNextPage}
+                    loader={isFetchingNextPage && <InfiniteScrollLoader />}
                     endMessage={<EndMessage />}
                 >
-                    <List list={data.pages.flat()} heading={heading} />
+                    <List list={items} heading={heading} />
                 </InfiniteScroll>
             </div>
             <Footer />

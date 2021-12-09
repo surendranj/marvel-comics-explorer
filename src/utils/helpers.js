@@ -1,29 +1,34 @@
-export const filterImages = list =>
-    list.filter(el => {
-        if (el.thumbnail) {
-            return !el.thumbnail.path.includes('image_not_available');
+//a function to remove data without images and description
+export const cleanPage = page => {
+    return page.filter(
+        item => item.description && !item.thumbnail.path.includes('image_not_available')
+    );
+};
+
+// sort data for binarySearchIdx
+export const sortData = page => page.sort((item1, item2) => item1.id - item2.id);
+
+// binary search to remove duplicates
+export const binarySearchIdx = (prevPages, item) => {
+    let start = 0;
+    let end = prevPages.length - 1;
+    while (start <= end) {
+        let middle = Math.floor((start + end) / 2);
+        if (prevPages[middle].id === item.id) {
+            return middle;
+        } else if (prevPages[middle].id < item.id) {
+            start = middle + 1;
         } else {
-            return el;
+            end = middle - 1;
         }
+    }
+    return -1;
+};
+// filter duplicates from page
+export const filterDuplicates = (prevPages, newPage) => {
+    return newPage.filter(item => {
+        return binarySearchIdx(prevPages, item) === -1;
     });
-
-export const filterDesc = list => list.filter(el => el.description);
-
-export const removeDuplicates = pages => {
-    const uniquePages = pages.reduce((prevPages, lastPage) => {
-        if (prevPages.length === 0) {
-            prevPages.push(lastPage);
-        } else {
-            const uniqueLastPage = lastPage.filter(lastPageItem => {
-                if (prevPages.flat().some(prevPagesItem => prevPagesItem.id === lastPageItem.id))
-                    return false;
-                return true;
-            });
-            prevPages.push(uniqueLastPage);
-        }
-        return prevPages;
-    }, []);
-    return uniquePages;
 };
 export const upperCaseFirst = str => str[0].toUpperCase() + str.slice(1);
 
