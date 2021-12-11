@@ -1,9 +1,9 @@
 import Card from './card';
 import FullScreenLoader from './loader';
 
-const List = ({ list, heading }) => {
+const List = ({ list, heading, listRef }) => {
     return (
-        <section className="text-white text-center md:text-base md:px-4">
+        <section ref={listRef} className="text-white text-center md:text-base md:px-4">
             <h1 className=" fixed md:hidden p-2 top-10 w-full z-40 text-tertiary bg-white">
                 {heading}
             </h1>

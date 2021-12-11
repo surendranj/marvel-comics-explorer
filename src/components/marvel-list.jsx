@@ -10,6 +10,26 @@ import { EventsContext } from '../../pages/events';
 import { SeriesContext } from '../../pages/series';
 import { RouteContext } from '../../pages/_app';
 
+const useHeight = (ref, list) => {
+    const [height, setHeight] = useState(null);
+    useEffect(() => {
+        const getHeight = () => {
+            if (ref.current) {
+                setHeight({
+                    clientHeight: ref.current.clientHeight,
+                    winHeight: window.innerHeight,
+                    isContentLess: ref.current.clientHeight <= 1.3 * window.innerHeight,
+                });
+            }
+        };
+        window.addEventListener('resize', getHeight);
+        getHeight();
+
+        return () => window.removeEventListener('resize', getHeight);
+    }, [ref, list]);
+    return height;
+};
+
 const MarvelList = () => {
     const comics = useContext(ComicsContext);
     const characters = useContext(CharactersContext);
@@ -19,8 +39,15 @@ const MarvelList = () => {
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, heading } =
         comics || characters || events || series;
 
-    const [items, setItems] = useState(null);
+    const [items, setItems] = useState([
+        ...data.pages
+            .flat()
+            .reduce((map, obj) => map.set(obj.id, obj), new Map())
+            .values(),
+    ]);
     const [isNewPageEmpty, setIsNewPageEmpty] = useState(false);
+    const listRef = useRef();
+    const height = useHeight(listRef, items);
 
     useEffect(() => {
         setItems([
@@ -39,17 +66,25 @@ const MarvelList = () => {
         }
     }, [data.pages]);
 
+    useEffect(() => {
+        if (height?.isContentLess || isNewPageEmpty) {
+            fetchNextPage();
+        }
+    });
+
+    useEffect(() => console.log(height));
+    useEffect(() => console.log(isFetchingNextPage));
     return (
         <>
             <div className={'flex-grow'}>
                 <InfiniteScroll
                     dataLength={data.pages.length}
                     next={() => fetchNextPage()}
-                    hasMore={isChangingRoute ? !hasNextPage : isNewPageEmpty || hasNextPage}
+                    hasMore={hasNextPage && !isChangingRoute}
                     loader={isFetchingNextPage && <InfiniteScrollLoader />}
                     endMessage={<EndMessage />}
                 >
-                    <List list={items} heading={heading} />
+                    <List listRef={listRef} list={items} heading={heading} />
                 </InfiniteScroll>
             </div>
             <Footer />
