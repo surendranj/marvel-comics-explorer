@@ -25,7 +25,7 @@ const HomePage = () => {
             </div>
             <div className="absolute z-10 flex flex-col flex-grow h-full w-full">
                 <motion.h1 animate={{ opacity: 1 }} className="text-4xl my-16 lg:text-7xl">
-                    Welcome to Marvel Eplorer
+                    Welcome to Marvel Explorer
                 </motion.h1>
 
                 <nav className="py-1 flex-grow flex justify-center items-center md:flex-grow-0.4">
