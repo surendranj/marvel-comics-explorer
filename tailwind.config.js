@@ -12,9 +12,6 @@ module.exports = {
             height: {
                 450: '450px',
             },
-            backgroundImage: {
-                deadpool: "url('/images/background/deadpool.jpg')",
-            },
             boxShadow: {
                 customBottom: '0px 3px 3px -1px #a61419',
             },

@@ -27,11 +27,9 @@ const HomePage = () => {
                 <motion.h1 animate={{ opacity: 1 }} className="text-4xl my-16 lg:text-7xl">
                     Welcome to Marvel Eplorer
                 </motion.h1>
-                <p className="my-10 ">
-                    Click on the links below to start exploring the Marvel Universe.
-                </p>
+
                 <nav className="py-1 flex-grow flex justify-center items-center md:flex-grow-0.4">
-                    <ul className="flex flex-col md:flex-row md:gap-20 md:text-2xl">
+                    <ul className="flex flex-col h-full w-full justify-evenly md:flex-row md:gap-20 md:text-2xl md:items-center">
                         {Object.entries(links).map(([pathName, path]) => (
                             <li key={pathName}>
                                 <a href={path}>

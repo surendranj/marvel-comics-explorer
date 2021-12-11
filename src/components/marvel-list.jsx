@@ -72,8 +72,6 @@ const MarvelList = () => {
         }
     });
 
-    useEffect(() => console.log(height));
-    useEffect(() => console.log(isFetchingNextPage));
     return (
         <>
             <div className={'flex-grow'}>
