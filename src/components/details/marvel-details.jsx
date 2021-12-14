@@ -21,13 +21,14 @@ const MarvelDetails = ({ queryKey, fetcher, initialData }) => {
     if (isError) console.log('Error:', error);
     const { results } = data.data;
     const { title, name, thumbnail, description, urls, creators, dates } = results[0];
+    const cleanDescription = description.replace(/<\/?[^>]+(>|$)/g, '');
     return (
         <>
             <article className="flex flex-col items-center justify-items-center flex-grow text-tertiary md:gap-y-20 lg:grid grid-cols-2 lg:gap-0 auto-rows-min ">
                 <Title name={name} title={title} />
                 <DetailsImage thumbnail={thumbnail} title={title} name={name} />
                 <section className="flex flex-col gap-4 text-xl md:px-4 lg:min-h-screen">
-                    <Description>{description}</Description>
+                    <Description>{cleanDescription}</Description>
                     <Published dates={dates} />
                     <Creators creators={creators} />
                     <DetailsNav urls={urls} />

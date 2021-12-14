@@ -10,7 +10,6 @@ const Card = ({ id, title, name, thumbnail }) => {
         ({ path: imagePath, extension: imageExtension } = thumbnail);
     }
     return (
-        // <Link href={`${router.pathname}/${id}`} passHref>
         <Link href={`${router.pathname}/${id}`} passHref>
             <a className="flex flex-col">
                 <article className="text-white hover:cursor-pointer relative z-30 m-0.5 border-0 overflow-hidden rounded-md flex flex-col flex-grow max-w-300 ring-2 ring-tertiary">

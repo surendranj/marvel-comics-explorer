@@ -15,9 +15,10 @@ export const getStaticProps = async () => await getListProps(queryKey);
 
 const Characters = () => {
     const initialStaticData = useList(queryKey);
+    const queryOptions = { initialData: { pages: [initialStaticData], pageParams: [0] } };
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteData(
         infiniteQueryKey,
-        initialStaticData
+        queryOptions
     );
 
     return (

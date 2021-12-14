@@ -3,9 +3,19 @@ import md5 from 'md5';
 import { dehydrate, QueryClient } from 'react-query';
 
 export const fetchData = async (endPoint, fetchParams = null) => {
+    const today = new Date();
     const apiConfig = {
-        apikey: process.env.NEXT_PUBLIC_PUBLIC_KEY_ALT, //your public key
-        PRIVATE_KEY: process.env.NEXT_PUBLIC_PRIVATE_KEY_ALT, //your private key
+        apikey:
+            !today.getDate() % 2
+                ? process.env.NEXT_PUBLIC_PUBLIC_KEY
+                : process.env.NEXT_PUBLIC_PUBLIC_KEY_ALT, //your public key
+        PRIVATE_KEY:
+            !today.getDate() % 2
+                ? process.env.NEXT_PUBLIC_PRIVATE_KEY
+                : process.env.NEXT_PUBLIC_PRIVATE_KEY_ALT, //your private key
+
+        apikey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+        PRIVATE_KEY: process.env.NEXT_PUBLIC_PRIVATE_KEY, //your private key
         BASE_URL: 'https://gateway.marvel.com/v1/public',
     };
     const { apikey, PRIVATE_KEY, BASE_URL } = apiConfig;

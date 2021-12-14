@@ -1,3 +1,4 @@
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import List from './list';
 import Footer from './footer';
@@ -9,26 +10,8 @@ import { CharactersContext } from '../../pages/characters';
 import { EventsContext } from '../../pages/events';
 import { SeriesContext } from '../../pages/series';
 import { RouteContext } from '../../pages/_app';
-
-const useHeight = (ref, list) => {
-    const [height, setHeight] = useState(null);
-    useEffect(() => {
-        const getHeight = () => {
-            if (ref.current) {
-                setHeight({
-                    clientHeight: ref.current.clientHeight,
-                    winHeight: window.innerHeight,
-                    isContentLess: ref.current.clientHeight <= 1.3 * window.innerHeight,
-                });
-            }
-        };
-        window.addEventListener('resize', getHeight);
-        getHeight();
-
-        return () => window.removeEventListener('resize', getHeight);
-    }, [ref, list]);
-    return height;
-};
+import useHeight from '../hooks/useHeight';
+import useFlatData from '../hooks/useFlatData';
 
 const MarvelList = () => {
     const comics = useContext(ComicsContext);
@@ -39,33 +22,9 @@ const MarvelList = () => {
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, heading } =
         comics || characters || events || series;
 
-    const [items, setItems] = useState([
-        ...data.pages
-            .flat()
-            .reduce((map, obj) => map.set(obj.id, obj), new Map())
-            .values(),
-    ]);
-    const [isNewPageEmpty, setIsNewPageEmpty] = useState(false);
+    const [items, isNewPageEmpty] = useFlatData(data);
     const listRef = useRef();
     const height = useHeight(listRef, items);
-
-    useEffect(() => {
-        setItems([
-            ...data.pages
-                .flat()
-                .reduce((map, obj) => map.set(obj.id, obj), new Map())
-                .values(),
-        ]);
-    }, [data.pages]);
-
-    useEffect(() => {
-        if (data.pages.slice(-1)[0].length === 0) {
-            setIsNewPageEmpty(true);
-        } else {
-            setIsNewPageEmpty(false);
-        }
-    }, [data.pages]);
-
     useEffect(() => {
         if (height?.isContentLess || isNewPageEmpty) {
             fetchNextPage();
@@ -90,4 +49,4 @@ const MarvelList = () => {
     );
 };
 
-export default MarvelList;
+export default React.memo(MarvelList);
