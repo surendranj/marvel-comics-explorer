@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
             router.events.off('routeChangeStart', setIsChangingRoute);
             router.events.off('routeChangeComplete', setIsChangingRoute);
         };
-    }, []);
+    }, [router.events]);
     return (
         <QueryClientProvider client={queryClient}>
             <RouteContext.Provider value={isChangingRoute}>

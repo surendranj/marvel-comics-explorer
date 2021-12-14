@@ -21,7 +21,7 @@ const MarvelDetails = ({ queryKey, fetcher, initialData }) => {
     if (isError) console.log('Error:', error);
     const { results } = data.data;
     const { title, name, thumbnail, description, urls, creators, dates } = results[0];
-    const cleanDescription = description.replace(/<\/?[^>]+(>|$)/g, '');
+    const cleanDescription = description?.replace(/<\/?[^>]+(>|$)/g, '');
     return (
         <>
             <article className="flex flex-col items-center justify-items-center flex-grow text-tertiary md:gap-y-20 lg:grid grid-cols-2 lg:gap-0 auto-rows-min ">

@@ -1,8 +1,8 @@
+import React from 'react';
 import SearchBar from './search/search-bar';
 import Logo from './logo';
 import NavList from './nav-list';
 import BurgerIcon from './burger-icon';
-import React from 'react';
 
 const NavBar = () => {
     return (
