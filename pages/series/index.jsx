@@ -1,7 +1,8 @@
 import { getListProps } from '../../src/utils/fetchData';
 import useList from '../../src/hooks/useList';
 import useInfiniteData from '../../src/hooks/useInfiniteData';
-import MarvelList from '../../src/components/marvel-list';
+import MarvelList from '../../src/components/marvel-list/marvel-list';
+
 import { createContext } from 'react';
 
 const endPoint = '/series';

@@ -1,11 +1,12 @@
-import NavBar from './nav-bar/nav-bar';
 import Head from 'next/head';
-import FullScreenLoader from './loader';
+import FullScreenLoader from '../loaders/full-screen-loader';
+import NavBar from '../nav-bar/nav-bar';
 import { createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { RouteContext } from '../../pages/_app';
-import useToggleNavBar from '../hooks/useToggleNavBar';
-import useInputChange from '../hooks/useInputChange';
+import { RouteContext } from '../../../pages/_app';
+import useToggleNavList from '../../hooks/useToggleNavList';
+import useToggleSearchList from '../../hooks/useToggleSearchList';
+import useInputChange from '../../hooks/useInputChange';
 
 export const NavBarContext = createContext();
 
@@ -13,11 +14,9 @@ const Layout = ({ children }) => {
     const router = useRouter();
     const { pathname } = router;
     const isChangingRoute = useContext(RouteContext);
-    const [translate, closeNavBar, toggleNavBar] = useToggleNavBar();
-
+    const [toggleNavList, setToggleNavList] = useToggleNavList();
+    const [toggleSearchList, setToggleSearchList] = useToggleSearchList();
     const [searchInputVal, setSearchInputVal, handleSearchInputChange] = useInputChange();
-
-    const closeSearchList = () => setSearchInputVal('');
 
     const indexOfSecondSlash = pathname.indexOf('/', 1);
     const placeholder =
@@ -41,11 +40,12 @@ const Layout = ({ children }) => {
                 <header className="sticky w-full top-0 z-50 shadow-customBottom h-10 bg-primary ">
                     <NavBarContext.Provider
                         value={{
-                            translate,
-                            toggleNavBar,
+                            toggleNavList,
+                            setToggleNavList,
+                            toggleSearchList,
+                            setToggleSearchList,
                             searchInputVal,
                             handleSearchInputChange,
-                            closeSearchList,
                             placeholder,
                             searchEndPoint,
                         }}
@@ -55,10 +55,7 @@ const Layout = ({ children }) => {
                 </header>
             )}
             <main
-                onClick={() => {
-                    closeNavBar();
-                    closeSearchList();
-                }}
+                onClick={() => setToggleNavList(false)}
                 className="relative z-40 flex flex-grow flex-col justify-center bg-gray-100"
             >
                 {children}

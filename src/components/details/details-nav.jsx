@@ -1,5 +1,5 @@
 import { upperCaseFirst, splitStringOnCaps } from '../../utils/helpers';
-import { NavBtn } from '../buttons';
+import NavBtn from '../buttons/nav-btn';
 
 const DetailsNav = ({ urls }) => (
     <nav className="mt-2 px-2">

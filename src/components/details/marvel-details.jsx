@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import useDetails from '../../hooks/useDetails';
-import FullScreenLoader from '../loader';
 import DetailsNav from './details-nav';
-import Footer from '../footer';
+import FullScreenLoader from '../loaders/full-screen-loader';
+import Footer from '../footer/footer';
 import Creators from './creators';
 import Published from './published';
 import Description from './description';

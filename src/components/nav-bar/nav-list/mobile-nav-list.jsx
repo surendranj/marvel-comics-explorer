@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { useContext } from 'react';
-import { NavBarContext } from '../layout';
 import { useRouter } from 'next/router';
+import { NavBarContext } from '../../layout/layout';
+import { motion } from 'framer-motion';
 
-const NavList = () => {
+const MobileNavList = ({ className }) => {
     const router = useRouter();
     const { pathname } = router;
     const paths = {
@@ -15,23 +16,22 @@ const NavList = () => {
     };
 
     const navBar = useContext(NavBarContext);
-    const { translate, toggleNavBar } = navBar;
+    const { toggleNavList, setToggleNavList } = navBar;
 
     return (
-        <ul className={`mobile-navbar ${translate} large-screen-navbar`}>
+        <motion.ul
+            animate={{ translateY: toggleNavList ? '0%' : '-110%' }}
+            initial={false}
+            transition={{ type: 'spring', stiffness: 70 }}
+            className={className}
+        >
             {Object.entries(paths).map(path => (
-                <li
-                    key={path[0]}
-                    onClick={toggleNavBar}
-                    className={`border-b border-primary last:border-0 md:border-0  ${
-                        pathname === path[1] && 'text-tertiary'
-                    }`}
-                >
+                <li key={path[0]} onClick={() => setToggleNavList(false)}>
                     <Link href={path[1]}>{path[0]}</Link>
                 </li>
             ))}
-        </ul>
+        </motion.ul>
     );
 };
 
-export default NavList;
+export default MobileNavList;

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-const Logo = () => {
+const Logo = ({ className }) => {
     return (
-        <div className="px-1 tracking-tighter bg-white text-primary rounded-sm  flex justify-center items-center z-0">
+        <div className={className}>
             <Link href="/" passHref>
                 MARVEL EXPLORER
             </Link>

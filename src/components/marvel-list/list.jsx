@@ -1,5 +1,5 @@
-import Card from './card';
-import FullScreenLoader from './loader';
+import FullScreenLoader from '../loaders/full-screen-loader';
+import Card from '../card/card';
 
 const List = ({ list, heading, listRef }) => {
     return (

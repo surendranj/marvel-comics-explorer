@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { TransparentPrimaryBtn } from '../src/components/buttons';
-import PhotoCredits from '../src/components/photo-credits';
+import PhotoCredits from '../src/components/photo-credits/photo-credits';
+import TransparentPrimaryBtn from '../src/components/buttons/trans-prim-btn';
 
 const PageNotFound = () => {
     const router = useRouter();

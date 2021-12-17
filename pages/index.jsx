@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { NavBtn } from '../src/components/buttons';
 import { motion } from 'framer-motion';
-import PhotoCredits from '../src/components/photo-credits';
+import NavBtn from '../src/components/buttons/nav-btn';
+import PhotoCredits from '../src/components/photo-credits/photo-credits';
 
 const HomePage = () => {
     const links = {

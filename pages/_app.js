@@ -1,9 +1,9 @@
 import '../styles/globals.css';
-import Layout from '../src/components/layout';
 import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useState, useEffect, createContext } from 'react';
 import { useRouter } from 'next/router';
+import Layout from '../src/components/layout/layout';
 
 export const RouteContext = createContext();
 

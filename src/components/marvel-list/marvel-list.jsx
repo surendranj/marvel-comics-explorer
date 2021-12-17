@@ -1,17 +1,17 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import List from './list';
-import Footer from './footer';
-import { InfiniteScrollLoader } from './loader';
-import EndMessage from './end-message';
+import Footer from '../footer/footer';
+import InfiniteScrollLoader from '../loaders/infinite-scroll-loader';
+import EndMessage from '../end-message/end-message';
 import { useContext, useEffect, useState, useRef } from 'react';
-import { ComicsContext } from '../../pages/comics';
-import { CharactersContext } from '../../pages/characters';
-import { EventsContext } from '../../pages/events';
-import { SeriesContext } from '../../pages/series';
-import { RouteContext } from '../../pages/_app';
-import useHeight from '../hooks/useHeight';
-import useFlatData from '../hooks/useFlatData';
+import { ComicsContext } from '../../../pages/comics';
+import { CharactersContext } from '../../../pages/characters';
+import { EventsContext } from '../../../pages/events';
+import { SeriesContext } from '../../../pages/series';
+import { RouteContext } from '../../../pages/_app';
+import useHeight from '../../hooks/useHeight';
+import useFlatData from '../../hooks/useFlatData';
 
 const MarvelList = () => {
     const comics = useContext(ComicsContext);

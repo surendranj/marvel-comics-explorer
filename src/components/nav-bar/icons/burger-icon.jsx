@@ -1,21 +1,18 @@
-import { NavBarContext } from '../layout';
 import { useContext } from 'react';
+import { NavBarContext } from '../../layout/layout';
 
-const BurgerIcon = () => {
+const BurgerIcon = ({ className }) => {
     const navBar = useContext(NavBarContext);
-    const { toggleNavBar, closeSearchList } = navBar;
+    const { toggleNavList, setToggleNavList } = navBar;
 
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 z-0 hover:cursor-pointer md:hidden"
+            className={className}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            onClick={() => {
-                closeSearchList();
-                toggleNavBar();
-            }}
+            onClick={() => setToggleNavList(!toggleNavList)}
         >
             <path
                 strokeLinecap="round"

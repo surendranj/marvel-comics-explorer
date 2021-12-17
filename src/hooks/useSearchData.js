@@ -5,7 +5,6 @@ import useInputDebounce from './useInputDebounce';
 const useSearchData = (searchInputVal, endPoint) => {
     const debouncedSearchVal = useInputDebounce(searchInputVal);
     const [searchKey] = useSearchKey(endPoint);
-
     const queryKey = [
         'search',
         endPoint,
@@ -15,10 +14,9 @@ const useSearchData = (searchInputVal, endPoint) => {
     ];
 
     const queryOptions = {
-        enabled: !!debouncedSearchVal,
-        // onErrror: error => console.log(error),
-        // onSuccess: data => console.log(data),
+        enabled: !!queryKey && !!searchInputVal && !!debouncedSearchVal,
     };
-    return useInfiniteData(queryKey, queryOptions);
+
+    return [useInfiniteData(queryKey, queryOptions), queryKey];
 };
 export default useSearchData;

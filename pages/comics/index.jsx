@@ -1,8 +1,8 @@
 import { getListProps } from '../../src/utils/fetchData';
 import useList from '../../src/hooks/useList';
 import useInfiniteData from '../../src/hooks/useInfiniteData';
-import MarvelList from '../../src/components/marvel-list';
 import { createContext } from 'react';
+import MarvelList from '../../src/components/marvel-list/marvel-list';
 
 const endPoint = '/comics';
 const fetchParams = { orderBy: 'title' };
@@ -20,7 +20,6 @@ const Comics = () => {
         infiniteQueryKey,
         queryOptions
     );
-
     return (
         <ComicsContext.Provider
             value={{ data, fetchNextPage, hasNextPage, isFetchingNextPage, heading: 'Comics' }}
