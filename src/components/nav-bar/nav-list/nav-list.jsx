@@ -18,7 +18,11 @@ const NavList = ({ className }) => {
     return (
         <ul className={className}>
             {Object.entries(paths).map(path => (
-                <li key={path[0]} onClick={() => setToggleNavList(false)}>
+                <li
+                    key={path[0]}
+                    onClick={() => setToggleNavList(false)}
+                    className={`${router.pathname === path[1] && 'text-tertiary'}`}
+                >
                     <Link href={path[1]}>{path[0]}</Link>
                 </li>
             ))}
